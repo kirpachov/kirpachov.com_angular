@@ -1,0 +1,17 @@
+{
+  "/api": {
+    "target": "http://localhost:3010",
+    "secure": false,
+    "ws": true,
+    "pathRewrite": {
+      "^/api": ""
+    }
+  },
+  "/rails/active_storage": {
+    "target": "http://localhost:3010",
+    "secure": false,
+    "pathRewrite": {
+      "^/rails/active_storage": "/rails/active_storage"
+    }
+  }
+}
