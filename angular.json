@@ -78,10 +78,12 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "kirpachov.com_portfolio:build:production"
+              "browserTarget": "kirpachov.com_portfolio:build:production",
+              "proxyConfig": "proxy.conf.json"
             },
             "development": {
-              "browserTarget": "kirpachov.com_portfolio:build:development"
+              "browserTarget": "kirpachov.com_portfolio:build:development",
+              "proxyConfig": "proxy.conf.json"
             }
           },
           "defaultConfiguration": "development"
