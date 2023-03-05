@@ -1,0 +1,22 @@
+:root {
+  --app-background-color: #1E1E1E;
+
+  --app-primary-text-color: #fff;
+  --app-secondary-color: #999;
+
+  --app-main-text-color: var(--app-primary-text-color);
+  --app-secondary-text-color: var(--app-secondary-color);
+  --app-disabled-text-color: #666;
+
+  --app-primary-button-color: #000;
+  --app-primary-button-bg-color: #fff;
+  --app-primary-button-border-color: #fff;
+
+  --app-secondary-button-color: var(--app-main-text-color);
+  --app-secondary-button-bg-color: transparent;
+  --app-secondary-button-border-color: var(--app-secondary-color);
+}
+
+.main-text{
+  color: var(--app-main-text-color);
+}

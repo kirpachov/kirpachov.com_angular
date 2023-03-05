@@ -1,0 +1,1 @@
+// export type Hash<KeyType extends string | number | symbol = string, ValueType = any> = Record<KeyType, ValueType>;

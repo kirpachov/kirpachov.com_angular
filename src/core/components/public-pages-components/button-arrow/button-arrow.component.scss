@@ -1,0 +1,30 @@
+:host {
+  border-radius: 50px;
+  outline: none;
+  border-style: none;
+  cursor: pointer;
+
+  :active {
+    border-style: none;
+  }
+
+  div.wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    position: relative;
+    padding: 1rem 1.5rem;
+  }
+
+  &.showIcon {
+    .icon {
+      max-width: 30px;
+    }
+  }
+
+  .icon {
+    max-width: 0;
+    transition: max-width 0.5s;
+    overflow: hidden;
+  }
+}
