@@ -1,0 +1,92 @@
+:host {
+
+  &.visited {
+    &.active {
+      svg circle.main {
+        animation: clock-animation .5s linear forwards;
+      }
+    }
+
+    &:not(.active) {
+      svg circle.main {
+        animation: clock-animation-reverse .5s linear forwards;
+      }
+    }
+  }
+
+  &:not(.visited) {
+    svg circle.main {
+      animation: none;
+      stroke-dashoffset: 175.92918860102841;
+    }
+  }
+
+  svg {
+    circle{
+      fill: transparent;
+      stroke-width: 2px;
+    }
+
+    circle:not(.main){
+      stroke: var(--app-secondary-text-color);
+    }
+    
+    circle.main {
+      stroke: var(--app-main-text-color);
+      stroke-dasharray: 175.92918860102841, 175.92918860102841;
+    }
+  }
+
+
+  @keyframes clock-animation {
+    0% {
+      stroke-dashoffset: 175.92918860102841;
+    }
+
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+
+  @keyframes clock-animation-reverse {
+    to {
+      stroke-dashoffset: 175.92918860102841;
+    }
+  }
+
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .relative {
+    position: relative;
+  }
+
+  .absolute {
+    position: absolute;
+  }
+
+  .justify-center {
+    justify-content: center;
+  }
+
+  .items-center {
+    align-items: center;
+  }
+
+  .flex-none {
+    flex: none;
+  }
+
+  .w-14 {
+    width: 3.5rem;
+  }
+
+  .h-14 {
+    height: 3.5rem;
+  }
+
+  .inline-flex {
+    display: inline-flex;
+  }
+}

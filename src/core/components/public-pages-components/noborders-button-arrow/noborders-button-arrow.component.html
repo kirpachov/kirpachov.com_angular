@@ -1,1 +1,35 @@
-<p>noborders-button-arrow works!</p>
+<!-- <ng-template #arrow>
+  <div class="arrow-container">
+    <mat-icon>arrow_forward</mat-icon>
+  </div>
+</ng-template> -->
+
+<!-- USER CONTENT -->
+<div class="wrapper">
+  <app-arrow *ngIf="showArrowBefore" [active]="isActive" ></app-arrow>
+  <!-- <ng-container *ngIf="showArrowBefore">
+    <ng-container *ngTemplateOutlet="arrow" ></ng-container>
+  </ng-container> -->
+
+  <span class="user-content">
+    <ng-content></ng-content>
+
+    <ng-container *ngIf="content">
+      <ng-container *ngIf="contentTemplate">
+        <ng-container *ngTemplateOutlet="contentTemplate"></ng-container>
+      </ng-container>
+      <ng-container *ngIf="contentText">
+        <span [innerText]="contentText"></span>
+      </ng-container>
+    </ng-container>
+  </span>
+
+  <app-arrow *ngIf="showArrowAfter" [active]="isActive" ></app-arrow>
+  <!-- <ng-container *ngIf="showArrowAfter">
+    <ng-container *ngTemplateOutlet="arrow" ></ng-container>
+  </ng-container> -->
+
+  <!-- <span class="icon" >
+    <mat-icon>arrow_forward</mat-icon>
+  </span> -->
+</div>
