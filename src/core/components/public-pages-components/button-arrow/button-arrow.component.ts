@@ -1,7 +1,7 @@
 import { Component, HostBinding, HostListener, Input, TemplateRef } from '@angular/core';
 
 @Component({
-  selector: 'app-button-arrow',
+  selector: '!app-button-arrow',
   templateUrl: './button-arrow.component.html',
   styleUrls: ['./button-arrow.component.scss'],
 

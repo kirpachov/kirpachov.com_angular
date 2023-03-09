@@ -1,0 +1,31 @@
+:host {
+  position: relative;
+  white-space: nowrap;
+  color: var(--app-secondary-text-color);
+
+  &, &:hover{
+    text-decoration: none!important;
+  }
+
+  &:hover {
+    color: var(--app-main-text-color);
+
+    &:after {
+      background-color: currentColor;
+      transform: scaleX(1);
+    }
+  }
+
+  &:after {
+    bottom: -4px;
+    content: "";
+    display: block;
+    height: 2px;
+    left: 0;
+    position: absolute;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: .25s ease;
+    width: 100%;
+  }
+}
