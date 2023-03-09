@@ -17,6 +17,17 @@
     transform: rotate(0deg);
   }
 
+  &.active, &:hover{
+    svg.arrow{
+      margin-top: .5rem;
+    }
+  }
+
+  svg.arrow {
+    margin-top: 0;
+    transition: margin-top 0.25s;
+  }
+
   &.visited {
     &.active {
       svg circle.main {
