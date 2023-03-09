@@ -1,15 +1,16 @@
 :host {
+  $animation-style: ease-out;
 
   &.visited {
     &.active {
       svg circle.main {
-        animation: clock-animation .5s linear forwards;
+        animation: clock-animation .5s $animation-style forwards;
       }
     }
 
     &:not(.active) {
       svg circle.main {
-        animation: clock-animation-reverse .5s linear forwards;
+        animation: clock-animation-reverse .5s $animation-style forwards;
       }
     }
   }
