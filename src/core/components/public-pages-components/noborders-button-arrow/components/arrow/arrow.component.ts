@@ -15,61 +15,29 @@ export class ArrowComponent {
   @HostBinding('class.active')
   @Input() active: boolean = false;
 
-  // stokeDashOffset = 0;
-  // 175.92918860102841
+  @Input() arrowDirection: 'left' | 'right' | 'top' | 'bottom' = 'right';
 
   ngOnChanges(changes: SimpleChanges): void {
-    //Called before any other lifecycle hook. Use it to inject dependencies, but avoid any serious work here.
-    //Add '${implements OnChanges}' to the class.
-    this.setStokeDashOffset();
     if (this.active && !this.visited) this.visited = true;
   }
 
-  private setStokeDashOffset() {
-    if (this.stokeCircle) {
-      const circleLength = this.stokeCircle.nativeElement.getTotalLength();
-      if (this.active){
-        // this.stokeDashOffset = circleLength;
-        // this.stokeCircle.nativeElement.style.strokeDashoffset = circleLength;
-        this.setStroke(circleLength, 0, 1000);
-      }else{
-        this.setStroke(0, circleLength, 1000);
-        // this.stokeDashOffset = 0;
-        // this.stokeCircle.nativeElement.style.strokeDashoffset = 0;
-      }
-    }
+  @HostBinding('class.arrow-left')
+  get isArrowLeft(): boolean {
+    return this.arrowDirection === 'left';
   }
 
-  // private setStroke(from: number, to: number, time: number = 1): void {}
-
-  private setStroke(from: number, to: number, time: number = 1): void {
-    if (!(this.stokeCircle && this.stokeCircle.nativeElement)) return console.error('No stokeCircle');
-
-    console.log(this.stokeCircle);
-
-    // if (this.stokeCircle) {
-    //   const circleLength = this.stokeCircle.nativeElement.getTotalLength();
-    //   const start = performance.now();
-    //   const animate = (time: number) => {
-    //     const timeFraction = (time - start) / time;
-    //     if (timeFraction < 1) {
-    //       const progress = from + (to - from) * timeFraction;
-    //       this.stokeCircle!.nativeElement.style.strokeDashoffset = circleLength - progress;
-    //       requestAnimationFrame(animate);
-    //     } else {
-    //       this.stokeCircle!.nativeElement.style.strokeDashoffset = circleLength - to;
-    //     }
-    //   };
-    //   requestAnimationFrame(animate);
-    // }
+  @HostBinding('class.arrow-right')
+  get isArrowRight(): boolean {
+    return this.arrowDirection === 'right';
   }
 
-  // private setStroke(from: number, to: number, time: number = 1): void {
-  //   if (!(this.stokeCircle && this.stokeCircle.nativeElement)) return;
+  @HostBinding('class.arrow-top')
+  get isArrowUp(): boolean {
+    return this.arrowDirection === 'top';
+  }
 
-  //   const circleLength = this.stokeCircle.nativeElement.getTotalLength();
-  //   const circle = this.stokeCircle.nativeElement;
-
-  // }
-
+  @HostBinding('class.arrow-bottom')
+  get isArrowDown(): boolean {
+    return this.arrowDirection === 'bottom';
+  }
 }

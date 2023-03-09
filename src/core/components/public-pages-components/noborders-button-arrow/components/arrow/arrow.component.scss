@@ -1,6 +1,22 @@
 :host {
   $animation-style: ease-out;
 
+  &.arrow-right {
+    transform: rotate(270deg);
+  }
+
+  &.arrow-left {
+    transform: rotate(90deg);
+  }
+
+  &.arrow-up, &.arrow-top {
+    transform: rotate(180deg);
+  }
+
+  &.arrow-down, &.arrow-bottom {
+    transform: rotate(0deg);
+  }
+
   &.visited {
     &.active {
       svg circle.main {

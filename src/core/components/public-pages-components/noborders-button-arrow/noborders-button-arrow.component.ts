@@ -22,6 +22,8 @@ export class NobordersButtonArrowComponent {
     this._arrowPosition = value;
   }
 
+  @Input() arrowDirection: 'left' | 'right' | 'top' | 'bottom' = 'right';
+
   get arrowPosition(): 'before' | 'after' {
     return this._arrowPosition;
   }

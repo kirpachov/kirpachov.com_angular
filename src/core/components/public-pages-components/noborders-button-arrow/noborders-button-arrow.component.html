@@ -1,7 +1,7 @@
 
 <!-- CONTENT -->
 <div class="wrapper">
-  <app-arrow *ngIf="showArrowBefore" [active]="isActive" ></app-arrow>
+  <app-arrow [arrowDirection]="arrowDirection" *ngIf="showArrowBefore" [active]="isActive" ></app-arrow>
 
   <span class="user-content mx-3">
     <ng-content></ng-content>
@@ -16,5 +16,5 @@
     </ng-container>
   </span>
 
-  <app-arrow *ngIf="showArrowAfter" [active]="isActive" ></app-arrow>
+  <app-arrow [arrowDirection]="arrowDirection" *ngIf="showArrowAfter" [active]="isActive" ></app-arrow>
 </div>
