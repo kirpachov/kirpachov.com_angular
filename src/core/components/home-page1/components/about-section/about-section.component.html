@@ -1,1 +1,23 @@
-<p>about-section works!</p>
+<div class="row flex-column-reverse flex-md-row">
+  <div class="offset-md-1 col col-12 col-md-5">
+
+    <div class="d-flex h-100 align-items-center">
+      <button noBordersButtonArrow [arrowPosition]="'before'">
+        <ng-container i18n>Scopri di più sul mio lavoro</ng-container>
+      </button>
+    </div>
+
+  </div>
+  <div class="col col-12 col-md-5">
+    <h1 class="main-text mb-4">
+      Ciao, chiamami Sasha. Sono uno sviluppatore web.
+    </h1>
+
+    <p class="secondary-text big-undertitle">
+      Sono un giovane nerd che cerca di semplificare la vita alle persone automatizzando
+      processi attraverso software di qualità.
+    </p>
+
+    <a underlined routerLink="about">Scopri di più su di me</a>
+  </div>
+</div>
