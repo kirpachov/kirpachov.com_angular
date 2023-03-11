@@ -7,6 +7,8 @@ import { ProjectsSectionComponent } from './components/projects-section/projects
 import { ServiceSectionComponent } from './components/service-section/service-section.component';
 import { PublicPagesComponentsModule } from '../public-pages-components/public-pages-components.module';
 import { RouterModule } from '@angular/router';
+import { ProjectsSlideshowModule } from '../projects-slideshow/projects-slideshow.module';
+import { UnderlinedButtonModule } from '../underlined-button/underlined-button.module';
 
 
 
@@ -22,6 +24,8 @@ import { RouterModule } from '@angular/router';
     CommonModule,
     PublicPagesComponentsModule,
     RouterModule,
+    ProjectsSlideshowModule,
+    UnderlinedButtonModule,
   ]
 })
 export class HomePage1Module { }

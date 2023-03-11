@@ -1,0 +1,32 @@
+<div class="d-flex flex-row align-items-center">
+  <span [ngClass]="{'disabled': !(navigateBackButtonEnabled)}" id="prevel">
+    <mat-icon>chevron_left</mat-icon>
+  </span>
+
+  <swiper [a11y]="{
+    enabled: true
+  }" [slidesPerView]="slidesPerView" [centeredSlides]="false" [spaceBetween]="50" [navigation]="{
+      enabled: true,
+      nextEl: '#nextel',
+      prevEl: '#prevel'
+    }" [allowSlidePrev]="navigateBackButtonEnabled" [allowSlideNext]="navigateForwardButtonEnabled" [pagination]="{
+      type: 'bullets',
+      enabled: false
+    }" (activeIndexChange)="activeIndexChange($event)" [keyboard]="{
+      enabled: true
+    }" [grabCursor]="true" [virtual]="false" [rewind]="false" [normalizeSlideIndex]="false" class="my-swiper">
+
+    <ng-template swiperSlide [virtualIndex]="i" *ngFor="let proj of projects; index as i">
+        <app-project-card
+          [id]="proj.id"
+          [title]="proj.title"
+          [description]="proj.description"
+          [url]="proj.url"
+        ></app-project-card>
+    </ng-template>
+  </swiper>
+
+  <span [ngClass]="{'disabled': !(navigateForwardButtonEnabled)}" id="nextel">
+    <mat-icon>chevron_right</mat-icon>
+  </span>
+</div>

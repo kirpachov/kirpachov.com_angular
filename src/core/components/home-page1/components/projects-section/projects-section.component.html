@@ -1,1 +1,19 @@
-<p>projects-section works!</p>
+<div class="row flex-column-reverse flex-md-row">
+  <div class="col col-12 mb-3">
+    <h1 class="main-text mb-4">
+      Progetti
+    </h1>
+
+    <!-- <p class="secondary-text big-undertitle">
+      Ho sviluppato vari software, eccone qualcuno.
+    </p> -->
+  </div>
+
+  <app-projects-slideshow></app-projects-slideshow>
+
+  <div class="d-flex">
+    <button class="mx-auto" noBordersButtonArrow [arrowPosition]="'before'" [arrowDirection]="'bottom'" >
+      <ng-container i18n>Scopri come lavoro</ng-container>
+    </button>
+  </div>
+</div>

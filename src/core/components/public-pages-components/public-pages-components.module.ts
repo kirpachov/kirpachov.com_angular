@@ -6,13 +6,11 @@ import { NobordersButtonArrowComponent } from './noborders-button-arrow/noborder
 import { ButtonArrowComponent } from './button-arrow/button-arrow.component';
 import { MatIconModule } from '@angular/material/icon';
 import { ArrowComponent } from './noborders-button-arrow/components/arrow/arrow.component';
-import { UnderlinedButtonComponent } from './underlined-button/underlined-button.component';
 
 const components = [
   MainButtonArrowComponent,
   SecondaryButtonArrowComponent,
   NobordersButtonArrowComponent,
-  UnderlinedButtonComponent,
 ];
 
 @NgModule({

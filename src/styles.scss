@@ -4,6 +4,9 @@
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 @import "assets/style/custom-bootstrap.scss";
 @import "assets/style/rotations.scss";
+@import 'node_modules/swiper/swiper.scss';
+@import 'node_modules/swiper/modules/pagination/pagination.scss';
+@import 'node_modules/swiper/modules/navigation/navigation.scss';
 
 body {
   background-color: var(--app-background-color);
@@ -29,4 +32,8 @@ mat-icon, .mat-icon, .material-icons {
 .big-undertitle{
   font-size: 1.8rem;
   font-weight: 500;
+}
+
+.width-fit-content{
+  width: fit-content;
 }

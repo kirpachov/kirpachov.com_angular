@@ -10,6 +10,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 import { PublicWrapperModule } from "src/core/components/public-wrapper/public-wrapper.module";
 import { ThemesModule } from "src/core/components/themes/themes.module";
+import { UnderlinedButtonModule } from "src/core/components/underlined-button/underlined-button.module";
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { ThemesModule } from "src/core/components/themes/themes.module";
     TuiAlertModule,
     PublicWrapperModule,
     ThemesModule,
+    UnderlinedButtonModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: !isDevMode(),
       // Register the ServiceWorker as soon as the application is stable

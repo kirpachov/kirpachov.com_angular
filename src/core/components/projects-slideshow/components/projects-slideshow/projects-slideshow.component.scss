@@ -1,0 +1,15 @@
+
+
+
+/* slides.component.scss */
+
+:host{
+  #prevel, #nextel{
+    opacity: 1;
+    transition: opacity 0.5s;
+
+    &[disabled], &.disabled{
+      opacity: 0;
+    }
+  }
+}
