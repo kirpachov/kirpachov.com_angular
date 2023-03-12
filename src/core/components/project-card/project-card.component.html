@@ -1,0 +1,9 @@
+<span *ngIf="title" class="title mb-3" [innerText]="title"></span>
+<a target="_blank" [href]="url" underlined *ngIf="url" class="width-fit-content d-flex align-items-center mb-2">
+  <mat-icon class="me-1">link</mat-icon>
+  <span [innerText]="url"></span>
+</a>
+
+<span *ngIf="description" class="description mb-2" [innerText]="description"></span>
+
+<a *ngIf="id" class="width-fit-content my-2" underlined [routerLink]="'/projects/' + id">Continua a leggere</a>
