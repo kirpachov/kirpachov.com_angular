@@ -22,7 +22,6 @@ export class ProjectsSlideshowComponent {
   // TODO(s)
   // Get the slides from the API
   // Update slidesPerView based on the screen size
-  slides = Array.from({ length: 5 }).map((el, index) => `Slide ${index + 1}`);
   projects: PublicProject[] = [
     {
       id: 1,
