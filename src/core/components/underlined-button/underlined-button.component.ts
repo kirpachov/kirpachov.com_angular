@@ -6,5 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./underlined-button.component.scss']
 })
 export class UnderlinedButtonComponent {
-
+  // Note: you may want to add
+  // { width: fit-content; }
+  // to this element's style.
 }

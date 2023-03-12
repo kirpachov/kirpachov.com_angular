@@ -12,6 +12,9 @@ export class ProjectCardComponent {
   @Input() url?: string;
   @Input() description?: string;
   @Input() projectUrl?: string;
+  @Input() startDate?: Date;
+  @Input() endDate?: Date;
+  @Input() links?: PublicProject['links'];
 
   private _project?: PublicProject;
   @Input() set project(v: PublicProject | undefined){
@@ -20,6 +23,9 @@ export class ProjectCardComponent {
     this.url = v?.prodUrl;
     this.description = v?.description;
     this.projectUrl = v?.links?.find(l => l.title === 'Project')?.url;
+    this.startDate = v?.startDate;
+    this.endDate = v?.endDate;
+    this.links = v?.links;
     this._project = v;
   }
 
@@ -31,8 +37,11 @@ export class ProjectCardComponent {
 
   shortUrl?: string;
 
+  validLinks: { title: string, url: string, isLocal: boolean, localUrl: string }[] = [];
+
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['url'] || changes['project']) this.calcShortUrl();
+    if(changes['links'] || changes['project']) this.calcValidLinks();
   }
 
   ngAfterViewInit(): void {
@@ -43,5 +52,19 @@ export class ProjectCardComponent {
 
   private calcShortUrl(): void {
     this.shortUrl = this.url?.replace(/(^\w+:|^)\/\//, '');
+  }
+
+  private calcValidLinks(): void {
+    this.validLinks = (this.links || []).filter(l => {
+      return l.title && l.title.length > 0 && l.url && l.url.length > 0;
+    }).map(l => {
+      return {
+        title: l.title,
+        url: l.url,
+        isLocal: l.url.startsWith(window.location.origin),
+        localUrl: l.url.replace(window.location.origin, '')
+      }
+    });
+    // this.validLinks = this.links?.filter(l => l.title !== 'Project') || [];
   }
 }

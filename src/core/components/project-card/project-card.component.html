@@ -1,9 +1,90 @@
-<span *ngIf="title" class="title mb-3" [innerText]="title"></span>
-<a target="_blank" [href]="url" underlined *ngIf="url" class="width-fit-content d-flex align-items-center mb-2">
-  <mat-icon class="me-1">link</mat-icon>
-  <span [innerText]="url"></span>
-</a>
+<!-- TEMPLATES -->
+<ng-template #titleTemp>
+  <span *ngIf="title" class="title mb-3" [innerText]="title"></span>
+</ng-template>
 
-<span *ngIf="description" class="description mb-2" [innerText]="description"></span>
+<ng-template #prodUrlTemp>
+  <a target="_blank" [href]="url" underlined *ngIf="url" class="width-fit-content d-flex align-items-center mb-2">
+    <mat-icon class="me-1">link</mat-icon>
+    <span [innerText]="url"></span>
+  </a>
+</ng-template>
 
-<a *ngIf="id" class="width-fit-content my-2" underlined [routerLink]="'/projects/' + id">Continua a leggere</a>
+<ng-template #descriptionTemp>
+  <span *ngIf="description" class="description mb-3" [innerText]="description"></span>
+</ng-template>
+
+<ng-template #datesTemp>
+  <ng-template #noEndDate>
+    <ng-container i18n>ora</ng-container>
+  </ng-template>
+
+  <span class="d-flex align-items-center" *ngIf="startDate">
+    <span [title]="startDate | date">
+      {{startDate | date: 'y'}}
+    </span>
+
+    <span class="mx-1">-</span>
+
+    <span *ngIf="endDate; else noEndDate">
+      {{endDate | date: 'y'}}
+    </span>
+  </span>
+
+</ng-template>
+
+<ng-template #linksTemp>
+  <div *ngIf="validLinks && validLinks.length > 0" class="links-container mb-2">
+    <ng-container *ngFor="let link of validLinks">
+      <ng-template #localLink>
+        <a class="proj-link" [routerLink]="link.localUrl">
+          <span [innerText]="link.title"></span>
+        </a>
+      </ng-template>
+
+      <ng-template #remoteLink>
+        <a class="proj-link" [href]="link.url">
+          <span [innerText]="link.title"></span>
+          <mat-icon class="ms-1">open_in_new</mat-icon>
+        </a>
+      </ng-template>
+      <ng-container *ngTemplateOutlet="link.isLocal ? localLink : remoteLink"></ng-container>
+    </ng-container>
+  </div>
+</ng-template>
+
+<ng-template #homePageCard>
+  <ng-container *ngTemplateOutlet="titleTemp"></ng-container>
+
+  <ng-container *ngTemplateOutlet="prodUrlTemp"></ng-container>
+
+  <ng-container *ngTemplateOutlet="descriptionTemp"></ng-container>
+
+  <a *ngIf="id" class="width-fit-content my-2" underlined [routerLink]="'/projects/' + id">Continua a leggere</a>
+</ng-template>
+
+<ng-template #projectsPageCard>
+  <ng-container *ngTemplateOutlet="datesTemp"></ng-container>
+
+  <a class="width-fit-content mb-2" underlined routerLink="{{id}}">
+    <ng-container *ngTemplateOutlet="titleTemp"></ng-container>
+  </a>
+
+  <ng-container *ngTemplateOutlet="prodUrlTemp"></ng-container>
+
+  <ng-container *ngTemplateOutlet="descriptionTemp"></ng-container>
+
+  <ng-container *ngTemplateOutlet="linksTemp"></ng-container>
+
+  <a *ngIf="id" class="width-fit-content my-2" underlined routerLink="{{id}}">Scopri di più</a>
+</ng-template>
+
+<!-- CONTENT -->
+<ng-container [ngSwitch]="location">
+  <ng-container *ngSwitchCase="'home'">
+    <ng-container *ngTemplateOutlet="homePageCard"></ng-container>
+  </ng-container>
+  <ng-container *ngSwitchCase="'projects'">
+    <ng-container *ngTemplateOutlet="projectsPageCard"></ng-container>
+  </ng-container>
+</ng-container>

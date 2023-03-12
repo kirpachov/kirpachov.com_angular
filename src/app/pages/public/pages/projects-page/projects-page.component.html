@@ -1,1 +1,12 @@
-<p>projects-page works!</p>
+<div class="container">
+  <div class="row">
+    <ng-container *ngFor="let proj of projects">
+      <div class="col col-12 col-sm-6 col-lg-4 col-xl-3 mb-3">
+        <app-project-card [location]="'projects'" [project]="proj"></app-project-card>
+      </div>
+    </ng-container>
+  </div>
+</div>
+
+<router-outlet></router-outlet>
+<ng-container></ng-container>

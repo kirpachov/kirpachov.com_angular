@@ -37,3 +37,15 @@ mat-icon, .mat-icon, .material-icons {
 .width-fit-content{
   width: fit-content;
 }
+
+a.classic-link{
+  // color: var(--app-main-text-color);
+  // text-decoration: none;
+  color: var(--app-secondary-text-color);
+  text-decoration: none;
+  transition: all 0.3s ease-in-out;
+
+  &:hover, &:focus, &:active, &.active, &.focus{
+    color: var(--app-main-text-color);
+  }
+}

@@ -11,4 +11,34 @@
 
     color: var(--app-main-text-color);
   }
+
+  .links-container{
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .proj-link{
+    mat-icon{
+      // Default is 24px
+      height: 18px;
+      width: 18px;
+      font-size: 18px;
+      // font-size: 1rem;
+    }
+
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    color: var(--app-secondary-text-color);
+    border: 1px solid var(--app-secondary-text-color);
+    border-radius: 3px;
+    transition: all 0.3s ease-in-out;
+    padding: 5px 10px;
+
+    &:hover, &:focus, &.active{
+      border: 1px solid var(--app-main-text-color);
+      color: var(--app-main-text-color);
+    }
+  }
 }

@@ -4,8 +4,12 @@ export interface PublicProject {
   title?: string;
   prodUrl?: string;
   description?: string;
-  links?: {
-    title: string,
-    url: string
-  }[]
+  startDate?: Date;
+  endDate?: Date;
+  links?: PublicProjectLink[]
+}
+
+export interface PublicProjectLink {
+  title: string;
+  url: string;
 }

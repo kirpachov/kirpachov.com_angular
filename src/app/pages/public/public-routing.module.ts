@@ -4,6 +4,7 @@ import { AboutPageComponent } from './pages/about-page/about-page.component';
 import { ProjectsPageComponent } from './pages/projects-page/projects-page.component';
 import { ContactsPageComponent } from './pages/contacts-page/contacts-page.component';
 import { HomePageComponent } from 'src/core/components/home-page1/components/home-page/home-page.component';
+import { ViewProjectPageComponent } from './pages/view-project-page/view-project-page.component';
 
 const routes: Routes = [
   {
@@ -16,7 +17,13 @@ const routes: Routes = [
   },
   {
     path: 'projects',
-    component: ProjectsPageComponent
+    component: ProjectsPageComponent,
+    children: [
+      {
+        path: ':project_id',
+        component: ViewProjectPageComponent
+      }
+    ]
   },
   {
     path: 'contacts',
