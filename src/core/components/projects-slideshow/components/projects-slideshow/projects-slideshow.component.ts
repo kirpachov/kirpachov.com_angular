@@ -1,17 +1,12 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, ViewChild, ViewEncapsulation } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { PublicProject } from 'src/core/lib/public-project';
 
 import SwiperCore, { Keyboard, Pagination, Navigation, Virtual, Swiper } from 'swiper';
 import { SwiperComponent } from 'swiper/angular';
 
 SwiperCore.use([Keyboard, Pagination, Navigation, Virtual]);
 
-interface PublicProject {
-  id?: number;
-  title?: string;
-  url?: string;
-  description?: string;
-}
 
 @Component({
   selector: 'app-projects-slideshow',
@@ -26,7 +21,7 @@ export class ProjectsSlideshowComponent {
     {
       id: 1,
       title: $localize`Gestione prenotazione e menu per ristoranti`,
-      url: `https://laportadacqua.com`,
+      prodUrl: `https://laportadacqua.com`,
       description: $localize`
       Software per la gestione delle prenotazioni e del menù fornisce un biglietto da visita niente male.
 `
@@ -34,7 +29,7 @@ export class ProjectsSlideshowComponent {
     {
       id: 2,
       title: $localize`Business Panel Information - Panel Aziende`,
-      url: `https://bpi.demetra.com`,
+      prodUrl: `https://bpi.demetra.com`,
       // Il software permette alle aziende di registrarsi per rispondere a sondaggi e di visualizzare i risultati.
       // È possibile, lato amministratore, creare sondaggi e inviarli alle aziende registrate.
       // I sondaggi vengono retribuiti e al raggiungimento di una certa soglia minima il "panelista"
@@ -47,7 +42,7 @@ export class ProjectsSlideshowComponent {
     {
       id: 3,
       title: $localize`Gestione preventivi e progetti`,
-      url: `https://quotations.opinioni.net`,
+      prodUrl: `https://quotations.opinioni.net`,
       // Software per la gestione dei preventivi e dei progetti.
       // Permette di creare preventivi e generare documenti stampabili con tutte le informazioni dettagliate.
       // Il cliente può vedere il preventivo attraverso un link che gli viene inviato dall'azienda.

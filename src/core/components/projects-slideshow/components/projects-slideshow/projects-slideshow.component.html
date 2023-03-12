@@ -17,12 +17,7 @@
     }" [grabCursor]="true" [virtual]="false" [rewind]="false" [normalizeSlideIndex]="false" class="my-swiper">
 
     <ng-template swiperSlide [virtualIndex]="i" *ngFor="let proj of projects; index as i">
-        <app-project-card
-          [id]="proj.id"
-          [title]="proj.title"
-          [description]="proj.description"
-          [url]="proj.url"
-        ></app-project-card>
+      <app-project-card [location]="'home'" [project]="proj" ></app-project-card>
     </ng-template>
   </swiper>
 
