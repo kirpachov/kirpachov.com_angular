@@ -1,1 +1,32 @@
-<p>public-navbar works!</p>
+<div class="navbar | px-2 py-5 d-flex flex-row align-items-center justify-content-around">
+  <div class="width-fit-content">
+    <a underlined routerLink="/">
+      <h1 class="main-text | m-0">
+        Oleksandr Kirpachov
+      </h1>
+    </a>
+  </div>
+
+  <button class="d-flex d-md-none" (hoveringChange)="menuIcon.active = $event" (click)="triggerMenu()" bordered>
+    <app-menu-icon [isOpen]="isMenuOpen" #menuIcon ></app-menu-icon>
+    <!-- <mat-icon>{{isMenuOpen ? 'close' : 'menu'}}</mat-icon> -->
+  </button>
+
+  <div class="navbar-links | d-none d-md-flex flex-row align-items-center">
+    <a class="simple-link colored-transition" underlined routerLink="/blog" i18n>Blog</a>
+    <a class="simple-link colored-transition" underlined routerLink="/about" i18n>About</a>
+    <a class="simple-link colored-transition" underlined routerLink="/projects" i18n>Projects</a>
+    <a class="simple-link text-nowrap" bordered routerLink="/contact" i18n>Contact me</a>
+  </div>
+</div>
+
+<!-- justify-content-around -->
+<div class="fullsize-navbar-links | align-items-center d-flex d-md-none flex-column px-3"
+  [ngClass]="{'open': isMenuOpen}">
+  <div class="justify-content-around d-flex flex-column align-items-center my-auto" [style]="{'max-height': '350px', 'height': '50%'}" >
+    <a class="simple-link colored-transition" underlined routerLink="/blog" i18n>Blog</a>
+    <a class="simple-link colored-transition" underlined routerLink="/about" i18n>About</a>
+    <a class="simple-link colored-transition" underlined routerLink="/projects" i18n>Projects</a>
+    <a class="simple-link text-nowrap" bordered routerLink="/contact" i18n>Contact me</a>
+  </div>
+</div>

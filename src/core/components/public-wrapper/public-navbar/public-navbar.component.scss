@@ -1,0 +1,44 @@
+:host {
+  .navbar-links {
+
+    .super-link,
+    .simple-link {
+      margin: 0 1rem;
+      display: block;
+    }
+  }
+
+  .fullsize-navbar-links {
+    background-color: var(--app-background-color);
+    transition: max-height .5s linear;
+    position: absolute;
+    background-color: var(--app-background-color);
+    z-index: 100;
+    top: 100px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    overflow: hidden;
+    max-height: 0;
+
+    &.open {
+      max-height: 100vh;
+    }
+
+    .colored-transition {
+      color: var(--app-secondary-text-color);
+      transition: color .5s ease;
+
+      &:hover {
+        color: var(--app-main-text-color);
+      }
+    }
+
+    .simple-link {
+      margin-bottom: 1rem;
+      display: flex;
+      font-size: 1.25rem;
+      text-decoration: none;
+    }
+  }
+}
