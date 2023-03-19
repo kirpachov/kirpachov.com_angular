@@ -1,5 +1,8 @@
 import { Component, Input, SimpleChanges } from '@angular/core';
-import { PublicProject } from 'src/core/lib/public-project';
+import { Project } from 'src/core/models/project';
+import { Link } from 'src/core/models/project-link';
+
+type ValidLink = { title: string, url: string, isLocal: boolean, localUrl: string };
 
 @Component({
   selector: 'app-project-card',
@@ -7,37 +10,38 @@ import { PublicProject } from 'src/core/lib/public-project';
   styleUrls: ['./project-card.component.scss']
 })
 export class ProjectCardComponent {
-  @Input() id?: number;
-  @Input() title?: string;
-  @Input() url?: string;
-  @Input() description?: string;
-  @Input() projectUrl?: string;
-  @Input() startDate?: Date;
-  @Input() endDate?: Date;
-  @Input() links?: PublicProject['links'];
 
-  private _project?: PublicProject;
-  @Input() set project(v: PublicProject | undefined){
-    this.id = v?.id;
-    this.title = v?.title;
-    this.url = v?.prodUrl;
-    this.description = v?.description;
-    this.projectUrl = v?.links?.find(l => l.title === 'Project')?.url;
-    this.startDate = v?.startDate;
-    this.endDate = v?.endDate;
-    this.links = v?.links;
-    this._project = v;
+  @Input() project?: Project;
+
+  get title(): string | undefined {
+    return this.project?.description;
   }
 
-  get project(): PublicProject | undefined {
-    return this._project;
+  get description(): string | undefined {
+    return this.project?.description;
+  }
+
+  get links(): Link[] {
+    return this.project?.links ?? [];
+  }
+
+  get startDate(): Date | undefined {
+    return this.project?.start_date;
+  }
+
+  get endDate(): Date | undefined {
+    return this.project?.end_date;
+  }
+
+  get id(): number | undefined {
+    return this.project?.id;
   }
 
   @Input() location: 'home' | 'projects' = 'projects';
 
-  shortUrl?: string;
+  shortUrls?: string[];
 
-  validLinks: { title: string, url: string, isLocal: boolean, localUrl: string }[] = [];
+  validLinks: ValidLink[] = [];
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['url'] || changes['project']) this.calcShortUrl();
@@ -45,26 +49,21 @@ export class ProjectCardComponent {
   }
 
   ngAfterViewInit(): void {
-    //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
-    //Add 'implements AfterViewInit' to the class.
     this.calcShortUrl()
   }
 
   private calcShortUrl(): void {
-    this.shortUrl = this.url?.replace(/(^\w+:|^)\/\//, '');
+    this.shortUrls = this.project?.production_urls?.map((url: string) => url?.replace(/(^\w+:|^)\/\//, ''));
   }
 
   private calcValidLinks(): void {
-    this.validLinks = (this.links || []).filter(l => {
+    this.validLinks = (this.project?.links || []).filter((l: Link) => {
       return l.title && l.title.length > 0 && l.url && l.url.length > 0;
-    }).map(l => {
-      return {
-        title: l.title,
-        url: l.url,
-        isLocal: l.url.startsWith(window.location.origin),
-        localUrl: l.url.replace(window.location.origin, '')
-      }
-    });
-    // this.validLinks = this.links?.filter(l => l.title !== 'Project') || [];
+    }).map((l: Link) => ({
+        title: l.title!,
+        url: l.url!,
+        isLocal: l.url!.startsWith(window.location.origin),
+        localUrl: l.url!.replace(window.location.origin, '')
+    }));
   }
 }

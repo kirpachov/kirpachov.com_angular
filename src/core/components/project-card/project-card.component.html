@@ -4,10 +4,12 @@
 </ng-template>
 
 <ng-template #prodUrlTemp>
-  <a target="_blank" [href]="url" underlined *ngIf="url" class="width-fit-content d-flex align-items-center mb-2">
-    <mat-icon class="me-1">link</mat-icon>
-    <span [innerText]="url"></span>
-  </a>
+  <div class="d-flex flex-column" *ngFor="let url of project?.production_urls">
+    <a target="_blank" [href]="url" underlined *ngIf="url" class="width-fit-content d-flex align-items-center mb-2">
+      <mat-icon class="me-1">link</mat-icon>
+      <span [innerText]="url"></span>
+    </a>
+  </div>
 </ng-template>
 
 <ng-template #descriptionTemp>

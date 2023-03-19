@@ -1,0 +1,5 @@
+{
+  "api.domain": "localhost:4210",
+  "api.secure": "false",
+  "api.path": "/api"
+}
