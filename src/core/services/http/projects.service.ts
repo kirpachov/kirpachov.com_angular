@@ -8,14 +8,6 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class ProjectsService extends CommonHttpService<Project> {
-  // pipe(until: () => import("rxjs").MonoTypeOperatorFunction<unknown>) {
-  //   throw new Error('Method not implemented.');
-  // }
-
-  // protected override type = Project;
-  // protected path = "projects"
-  // protected override itemName = "project"
-  // protected paramsToDelete = ["id", "created_at", "customActivityTitle"]
   override resourcePath = `projects`;
   override type = Project;
 }

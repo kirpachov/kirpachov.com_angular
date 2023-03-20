@@ -36,7 +36,7 @@ export class DomainService {
   }
 
   getUrl(path: string | number): string {
-    return `${this.getBaseUrl()}${path}`;
+    return `${this.getBaseUrl()}/${path}`;
   }
 
   loadConfigs(): void {

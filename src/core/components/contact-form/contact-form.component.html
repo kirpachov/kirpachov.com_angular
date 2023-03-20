@@ -1,0 +1,38 @@
+<h1 class="main-text">
+  <ng-container i18n>Contact me</ng-container>
+</h1>
+<p i18n>I'll get in touch as soon as possible!</p>
+
+<tui-theme-night></tui-theme-night>
+
+<form [formGroup]="form" (ngSubmit)="submit()">
+  <div class="mb-3">
+    <tui-input [formControlName]="'name'" [tuiTextfieldSize]="inputSize">
+      <input tuiTextfield>
+      <ng-container i18n>Your full name</ng-container>
+    </tui-input>
+
+    <app-errors [errors]="form.get('name')?.errors ?? null"></app-errors>
+  </div>
+
+  <div class="mb-3">
+    <tui-input [formControlName]="'email'" [tuiTextfieldSize]="inputSize">
+      <input tuiTextfield>
+      <ng-container i18n>Your work email</ng-container>
+    </tui-input>
+
+    <app-errors [errors]="form.get('email')?.errors ?? null"></app-errors>
+  </div>
+
+  <div class="mb-3">
+    <tui-text-area [expandable]="true" [tuiTextfieldSize]="inputSize" formControlName="message">
+      <ng-container i18n>Message</ng-container>
+    </tui-text-area>
+
+    <app-errors [errors]="form.get('message')?.errors ?? null"></app-errors>
+  </div>
+
+  <button tuiButton type="submit" [size]="inputSize">
+    <ng-container i18n>Confirm</ng-container>
+  </button>
+</form>

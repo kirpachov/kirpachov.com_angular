@@ -30,6 +30,8 @@ import { initialLoadConfigs } from "src/core/lib/initial-load-configs";
     PublicWrapperModule,
     ThemesModule,
     UnderlinedButtonModule,
+    TuiRootModule,
+    TuiModeModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: !isDevMode(),
       // Register the ServiceWorker as soon as the application is stable

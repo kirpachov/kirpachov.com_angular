@@ -28,7 +28,7 @@ const routes: Routes = [
   {
     path: 'contacts',
     component: ContactsPageComponent
-  }
+  },
 ];
 
 @NgModule({

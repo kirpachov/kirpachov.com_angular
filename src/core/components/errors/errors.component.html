@@ -1,0 +1,4 @@
+<tui-error *ngFor="let msg of errorsToStr()" [error]="msg"></tui-error>
+<ng-container *ngFor="let temp of errorsToTemplates()">
+  <ng-container *ngTemplateOutlet="temp"></ng-container>
+</ng-container>
