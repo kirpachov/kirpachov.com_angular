@@ -4,7 +4,7 @@ import { ContactFormComponent } from './contact-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ErrorsModule } from '../errors/errors.module';
 import { TuiInputModule, TuiTextAreaModule } from '@taiga-ui/kit';
-import { TuiButtonModule, TuiModeModule, TuiRootModule, TuiTextfieldControllerModule, TuiThemeNightModule } from '@taiga-ui/core';
+import { TuiButtonModule, TuiLoaderModule, TuiModeModule, TuiRootModule, TuiTextfieldControllerModule, TuiThemeNightModule } from '@taiga-ui/core';
 
 
 @NgModule({
@@ -22,6 +22,7 @@ import { TuiButtonModule, TuiModeModule, TuiRootModule, TuiTextfieldControllerMo
     TuiModeModule,
     TuiRootModule,
     TuiThemeNightModule,
+    TuiLoaderModule,
   ],
   exports: [
     ContactFormComponent
