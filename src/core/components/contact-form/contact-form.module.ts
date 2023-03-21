@@ -5,6 +5,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ErrorsModule } from '../errors/errors.module';
 import { TuiInputModule, TuiTextAreaModule } from '@taiga-ui/kit';
 import { TuiButtonModule, TuiLoaderModule, TuiModeModule, TuiRootModule, TuiTextfieldControllerModule, TuiThemeNightModule } from '@taiga-ui/core';
+import { TuiAutoFocusModule } from '@taiga-ui/cdk';
 
 
 @NgModule({
@@ -23,6 +24,7 @@ import { TuiButtonModule, TuiLoaderModule, TuiModeModule, TuiRootModule, TuiText
     TuiRootModule,
     TuiThemeNightModule,
     TuiLoaderModule,
+    TuiAutoFocusModule,
   ],
   exports: [
     ContactFormComponent

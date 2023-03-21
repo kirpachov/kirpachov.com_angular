@@ -8,7 +8,7 @@
 <form [formGroup]="form" (ngSubmit)="submit()">
   <tui-loader [overlay]="true" [showLoader]="saving">
     <div class="mb-3">
-      <tui-input [formControlName]="'name'" [tuiTextfieldSize]="inputSize">
+      <tui-input [tuiAutoFocus]="true" [formControlName]="'name'" [tuiTextfieldSize]="inputSize">
         <input tuiTextfield>
         <ng-container i18n>Your full name</ng-container>
       </tui-input>
