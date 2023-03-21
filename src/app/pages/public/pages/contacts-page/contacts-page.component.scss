@@ -1,0 +1,58 @@
+@property --border-angle {
+  syntax: "<angle>";
+  inherits: true;
+  initial-value: 0turn;
+}
+
+:host {
+  .contact-card {
+    padding: 1rem;
+    border-radius: 1rem;
+    border: 1px solid var(--app-secondary-text-color);
+    color: var(--app-secondary-text-color);
+    text-decoration: none;
+    transition: color 500ms ease-in-out;
+
+    // Animation taken from https://codepen.io/shshaw/pen/RwJwJJx
+    &:hover {
+      color: var(--app-primary-text-color);
+
+      --border-size: 0;
+      --final-border-size: 3px;
+      --border-angle: 0turn;
+      --color-1: var(--app-background-color);
+      --color-2: var(--app-primary-text-color);
+
+      background-image: conic-gradient(from var(--border-angle),
+          var(--app-background-color),
+          var(--app-background-color) 50%,
+          var(--app-background-color)),
+        conic-gradient(from var(--border-angle), transparent 20%, var(--color-1), var(--color-2));
+      background-size: calc(100% - (var(--border-size) * 2)) calc(100% - (var(--border-size) * 2)), cover;
+      background-position: center center;
+      background-repeat: no-repeat;
+
+      animation: show-border 6s linear forwards, bg-spin 3s linear infinite;
+
+      @keyframes bg-spin {
+        to {
+          --border-angle: 1turn;
+        }
+      }
+
+      @keyframes show-border {
+        0% { --border-size: 0; }
+        10%{ --border-size: calc(var(--final-border-size) * 0.1); }
+        20%{ --border-size: calc(var(--final-border-size) * 0.2); }
+        30%{ --border-size: calc(var(--final-border-size) * 0.3); }
+        40%{ --border-size: calc(var(--final-border-size) * 0.4); }
+        50%{ --border-size: calc(var(--final-border-size) * 0.5); }
+        60%{ --border-size: calc(var(--final-border-size) * 0.6); }
+        70%{ --border-size: calc(var(--final-border-size) * 0.7); }
+        80%{ --border-size: calc(var(--final-border-size) * 0.8); }
+        90%{ --border-size: calc(var(--final-border-size) * 0.9); }
+        100% { --border-size: var(--final-border-size); }
+      }
+    }
+  }
+}

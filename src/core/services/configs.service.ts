@@ -24,6 +24,18 @@ export class ConfigsService {
     return of((this.configs ?? {})[key] || (this.defaults ?? {})[key]);
   }
 
+  getMultiple(keys: string[]): Observable<Record<string, any>> {
+    return forkJoin(keys.map((key) => this.get(key))).pipe(
+      map((values) => {
+        const result: Record<string, any> = {};
+        keys.forEach((key, index) => {
+          result[key] = values[index];
+        });
+        return result;
+      })
+    );
+  }
+
   private loadConfigs(): Observable<Record<string, any>> {
     const load = (filename: string) => this.http.get(`assets/config/${filename}`);
 

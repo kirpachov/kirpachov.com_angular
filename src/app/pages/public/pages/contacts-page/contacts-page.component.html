@@ -1,7 +1,25 @@
-<div class="container">
+<div class="container w-auto">
   <div class="row">
-    <div class="offset-md-1 col-md-5 col col-12">
+    <div class="offset-xl-1 col-xl-5 col col-12 mb-3">
       <app-contact-form></app-contact-form>
+    </div>
+
+    <div class="col-12 col-xl-5 mb-3">
+      <ng-container *ngIf="emailContact && emailContact.length > 0">
+        <a rel="noreferrer" target="_blank" href="mailto:{{emailContact}}" class="contact-card border-effect | d-flex flex-column mb-3">
+
+          <h3 class="m-0" i18n>Write me</h3>
+          <p [innerText]="emailContact"></p>
+        </a>
+      </ng-container>
+
+      <ng-container *ngIf="phoneContact && phoneContact.length > 0 && phonePrefix">
+        <a rel="noreferrer" target="_blank" href="tel:{{phoneContact}}" class="contact-card | d-flex flex-column">
+
+          <h3 class="m-0" i18n>Call me</h3>
+          <p [innerText]="phoneContact | tuiFormatPhone: phonePrefix"></p>
+        </a>
+      </ng-container>
     </div>
   </div>
 </div>

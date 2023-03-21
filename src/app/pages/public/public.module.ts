@@ -9,6 +9,8 @@ import { HomePage1Module } from 'src/core/components/home-page1/home-page1.modul
 import { ProjectCardModule } from 'src/core/components/project-card/project-card.module';
 import { ViewProjectPageComponent } from './pages/view-project-page/view-project-page.component';
 import { ContactFormModule } from '@core/components/contact-form/contact-form.module';
+import { TuiFormatPhonePipeModule, TuiLinkModule } from '@taiga-ui/core';
+import { UnderlinedButtonModule } from '@core/components/underlined-button/underlined-button.module';
 
 
 @NgModule({
@@ -23,7 +25,9 @@ import { ContactFormModule } from '@core/components/contact-form/contact-form.mo
     PublicRoutingModule,
     HomePage1Module,
     ProjectCardModule,
-    ContactFormModule
+    ContactFormModule,
+    UnderlinedButtonModule,
+    TuiFormatPhonePipeModule,
   ]
 })
 export class PublicModule { }
