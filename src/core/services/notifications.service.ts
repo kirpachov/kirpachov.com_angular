@@ -10,9 +10,7 @@ export class NotificationsService {
   constructor(
     // @Inject(TuiAlertService)
     private readonly alertService: TuiAlertService,
-  ) {
-    console.log(this);
-  }
+  ) { }
 
   open(message: string, params: Partial<TuiAlertOptions<any>>): Observable<any> {
     return this.alertService.open(message, params);
