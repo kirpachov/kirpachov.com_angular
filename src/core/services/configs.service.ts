@@ -2,6 +2,16 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError, forkJoin, map, of, tap } from 'rxjs';
 
+const avaliableConfigs = [
+  `api.domain`,
+  `api.secure`,
+  `api.path`,
+  `contact.email`,
+  `contact.phone`,
+  `contact.phone.prefix`,
+] as const;
+export type ConfigKey = typeof avaliableConfigs[number];
+
 @Injectable({
   providedIn: 'root'
 })
@@ -20,11 +30,11 @@ export class ConfigsService {
     private readonly http: HttpClient,
   ) {}
 
-  get(key: string): Observable<any> {
+  get(key: ConfigKey): Observable<any> {
     return of((this.configs ?? {})[key] || (this.defaults ?? {})[key]);
   }
 
-  getMultiple(keys: string[]): Observable<Record<string, any>> {
+  getMultiple(keys: ConfigKey[]): Observable<Record<string, any>> {
     return forkJoin(keys.map((key) => this.get(key))).pipe(
       map((values) => {
         const result: Record<string, any> = {};
@@ -68,8 +78,4 @@ export class ConfigsService {
       })
     );
   }
-
-  // private initialize(): void {
-  //   this.loadConfigs().subscribe();
-  // }
 }
