@@ -15,7 +15,7 @@ export class PublicFooterComponent {
   constructor(
     private readonly configs: ConfigsService
   ){
-    this.configs.get('contactEmail').subscribe((value) => {
+    this.configs.get('contact.email').subscribe((value) => {
       this.contactEmail = value;
     });
   }

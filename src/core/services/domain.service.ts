@@ -41,7 +41,7 @@ export class DomainService {
 
   loadConfigs(): void {
     forkJoin(
-      [`domain`, `secure`, `path`].map((key) => this.configService.get(`api.${key}`))
+      ([`domain`, `secure`, `path`] as const).map((key) => this.configService.get(`api.${key}`))
     ).subscribe(([domain, secure, path]) => {
       this.domain = domain;
       this.secure = secure ? secure === `true` : false;
