@@ -17,6 +17,11 @@
   --app-secondary-button-border-color: var(--app-secondary-color);
 }
 
+body {
+  color: var(--app-secondary-text-color);
+  font: var(--tui-font-text-l);
+}
+
 .main-text{
   color: var(--app-main-text-color);
 }

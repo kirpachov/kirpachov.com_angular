@@ -11,7 +11,10 @@
 body {
   background-color: var(--app-background-color);
   color: var(--app-secondary-text-color);
-  font-family: "Open Sans", sans-serif;
+
+  :not(.tui-default) {
+    line-height: initial;
+  }
 }
 
 html,
