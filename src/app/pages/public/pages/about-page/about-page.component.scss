@@ -1,0 +1,26 @@
+:host{
+  .row {
+    margin-bottom: 8rem;
+  }
+
+  img{
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 5px;
+  }
+
+  .paragraph {
+    display: flex;
+    flex-direction: column;
+
+    .title{
+      display: block;
+      margin-bottom: .75rem;
+      font-size: 1.5rem;
+    }
+
+    .text{
+      margin-bottom: 1rem;
+    }
+  }
+}
