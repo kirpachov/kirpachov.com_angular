@@ -1,14 +1,14 @@
-:host{
+:host {
   .card-step {
     border: 1px solid var(--app-secondary-text-color);
     border-radius: 5px;
 
-    .title-container{
+    .title-container {
       position: relative;
       margin-bottom: 1rem;
       display: block;
 
-      .index{
+      .index {
         font-size: 3rem;
         font-weight: 700;
         color: var(--app-secondary-text-color);
