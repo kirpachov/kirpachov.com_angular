@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, ViewChild, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, HostListener, Input, ViewChild, ViewEncapsulation } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { Project } from 'src/core/models/project';
 // import { PublicProject } from 'src/core/lib/public-project';
@@ -15,56 +15,15 @@ SwiperCore.use([Keyboard, Pagination, Navigation, Virtual]);
   styleUrls: ['./projects-slideshow.component.scss'],
 })
 export class ProjectsSlideshowComponent {
-  // TODO(s)
-  // Get the slides from the API
-  // Update slidesPerView based on the screen size
   @Input() projects?: Project[];
-//   projects: PublicProject[] = [
-//     {
-//       id: 1,
-//       title: $localize`Gestione prenotazione e menu per ristoranti`,
-//       prodUrl: `https://laportadacqua.com`,
-//       description: $localize`
-//       Software per la gestione delle prenotazioni e del menù fornisce un biglietto da visita niente male.
-// `
-//     },
-//     {
-//       id: 2,
-//       title: $localize`Business Panel Information - Panel Aziende`,
-//       prodUrl: `https://bpi.demetra.com`,
-//       // Il software permette alle aziende di registrarsi per rispondere a sondaggi e di visualizzare i risultati.
-//       // È possibile, lato amministratore, creare sondaggi e inviarli alle aziende registrate.
-//       // I sondaggi vengono retribuiti e al raggiungimento di una certa soglia minima il "panelista"
-//       // può scegliere il proprio premio.
-//       // Il software è stato sviluppato per la società Demetra Opinioni.net srl.
-//       description: $localize`
-//       Panel per aziende. Sviluppato insieme al resto del reparto IT di Demetra Opinioni.net srl.
-// `
-//     },
-//     {
-//       id: 3,
-//       title: $localize`Gestione preventivi e progetti`,
-//       prodUrl: `https://quotations.opinioni.net`,
-//       // Software per la gestione dei preventivi e dei progetti.
-//       // Permette di creare preventivi e generare documenti stampabili con tutte le informazioni dettagliate.
-//       // Il cliente può vedere il preventivo attraverso un link che gli viene inviato dall'azienda.
-//       // All'interno può scaricare il documento in formato PDF, in modo da poterlo rimandare firmato.
-//       // Il software è stato sviluppato per la società Demetra Opinioni.net srl.
-//       description: $localize`
-//       Software per la gestione dei preventivi.
-//       Aiuta inoltre con la fatturazione e la gestione interna dei progetti.
-//       Fornisce un link per il cliente in cui può vedere il preventivo e scaricare il documento in formato PDF.
-//       Sviluppato insieme al resto del reparto IT di Demetra Opinioni.net srl.
-// `
-//     }
-//   ].map((project: PublicProject) => ({
-//     ...project,
-//     description: (project.description || '').replace(/\n/gm, " ")
-//   }));
 
   @Input() projectLink: (project: Project) => string = (project: Project) => `/projects/${project.id}`;
 
   @ViewChild(SwiperComponent) swiper?: any;
+
+  componentWidth: number = 0;
+
+  private readonly slideMinWidth = 400;
 
   _slidesPerView = 3;
   get slidesPerView(): number {
@@ -87,7 +46,8 @@ export class ProjectsSlideshowComponent {
   private readonly cd = () => this.cdr.detectChanges();
 
   constructor(
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private readonly ref: ElementRef
   ) { }
 
   ngOnInit(): void {
@@ -96,10 +56,12 @@ export class ProjectsSlideshowComponent {
 
   ngAfterViewInit(): void {
     this.cd();
+    this.calcComponentWidth();
   }
 
   ngOnChanges(): void {
     this.cd();
+    this.calcComponentWidth();
   }
 
   activeIndexChange(event: [Swiper]): void {
@@ -110,5 +72,17 @@ export class ProjectsSlideshowComponent {
     this.navigateBackButtonEnabled = activeIndex > 0;
     this.navigateForwardButtonEnabled = activeIndex < (this.projects || []).length - this.slidesPerView;
     this.cd();
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any): void {
+    this.calcComponentWidth();
+  }
+
+  private calcComponentWidth(): void {
+    this.componentWidth = this.ref.nativeElement.offsetWidth;
+    this.cd();
+
+    this.slidesPerView = Math.floor(this.componentWidth / this.slideMinWidth);
   }
 }
