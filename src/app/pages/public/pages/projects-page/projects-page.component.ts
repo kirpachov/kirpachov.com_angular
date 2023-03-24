@@ -11,12 +11,10 @@ import { Project } from 'src/core/models/project';
   styleUrls: ['./projects-page.component.scss']
 })
 export class ProjectsPageComponent {
-
   @AutoDestroy destroy$: Subject<void> = new Subject<void>();
 
-  projects: BehaviorSubject<Project[]> = new BehaviorSubject<Project[]>([]);
-
-  // data: BehaviorSubject<SearchResult<Project> | undefined> = new BehaviorSubject<SearchResult<Project> | undefined>(undefined);
+  projects?: Project[];
+  projects$: BehaviorSubject<Project[]> = new BehaviorSubject<Project[]>([]);
 
   private loadProjects?: Subscription;
 
@@ -27,7 +25,11 @@ export class ProjectsPageComponent {
   constructor(
     private readonly service: ProjectsService
   ) {
-
+    this.projects$.pipe(
+      takeUntil(this.destroy$)
+    ).subscribe((pjs: Project[]) => {
+      this.projects = pjs;
+    })
   }
 
   ngOnInit(): void {
@@ -35,9 +37,10 @@ export class ProjectsPageComponent {
   }
 
   load(): void {
-    this.service.search().pipe(takeUntil(this.destroy$)).subscribe((data: SearchResult<Project>) => {
-      // this.data.next(data)
-      this.projects.next(data.items ?? []);
+    this.loadProjects?.unsubscribe();
+
+    this.loadProjects = this.service.search({page: 1, per_page: 1000}).pipe(takeUntil(this.destroy$)).subscribe((data: SearchResult<Project>) => {
+      this.projects$.next(data.items ?? []);
     })
   }
 }

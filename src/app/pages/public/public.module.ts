@@ -9,7 +9,7 @@ import { HomePage1Module } from 'src/core/components/home-page1/home-page1.modul
 import { ProjectCardModule } from 'src/core/components/project-card/project-card.module';
 import { ViewProjectPageComponent } from './pages/view-project-page/view-project-page.component';
 import { ContactFormModule } from '@core/components/contact-form/contact-form.module';
-import { TuiFormatPhonePipeModule, TuiLinkModule } from '@taiga-ui/core';
+import { TuiFormatPhonePipeModule, TuiLinkModule, TuiLoaderModule } from '@taiga-ui/core';
 import { UnderlinedButtonModule } from '@core/components/underlined-button/underlined-button.module';
 
 
@@ -28,6 +28,7 @@ import { UnderlinedButtonModule } from '@core/components/underlined-button/under
     ContactFormModule,
     UnderlinedButtonModule,
     TuiFormatPhonePipeModule,
+    TuiLoaderModule,
   ]
 })
 export class PublicModule { }
