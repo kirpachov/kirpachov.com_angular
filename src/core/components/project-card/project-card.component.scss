@@ -1,6 +1,7 @@
 :host{
   display: flex;
   flex-direction: column;
+  justify-content: space-around;
   border: 1px solid var(--app-secondary-text-color);
   border-radius: 25px;
   padding: 20px;

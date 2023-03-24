@@ -18,14 +18,13 @@ export class SearchResult<T> {
   /**
    * Metadata of search result
    */
-   public metadata: any|{
-    current_page: number;
-    per_page: number;
-    prev_page: number;
-    next_page: number;
-    total_pages: number;
-    total_count: number;
-    [key: string]: any;
+   public metadata: {
+    current_page?: number;
+    per_page?: number;
+    prev_page?: number;
+    next_page?: number;
+    total_pages?: number;
+    total_count?: number;
   };
 
   /**
@@ -52,7 +51,7 @@ export class SearchResult<T> {
    * Returns the number of current search result page.
    */
   get current_page(): number {
-    return this.metadata.current_page;
+    return this.metadata.current_page as number;
   }
 
 
@@ -60,7 +59,7 @@ export class SearchResult<T> {
    * Returns the number of items per search result page.
    */
   get per_page(): number {
-    return this.metadata.per_page;
+    return this.metadata.per_page as number;
   }
 
 
@@ -68,7 +67,7 @@ export class SearchResult<T> {
    * Returns the number of previous search result page.
    */
   get prev_page(): number {
-    return this.metadata.prev_page;
+    return this.metadata.prev_page as number;
   }
 
 
@@ -76,7 +75,7 @@ export class SearchResult<T> {
    * Returns the number of next search result page.
    */
   get next_page(): number {
-    return this.metadata.next_page;
+    return this.metadata.next_page as number;
   }
 
 
@@ -84,7 +83,7 @@ export class SearchResult<T> {
    * Returns the number of total search result pages.
    */
   get total_pages(): number {
-    return this.metadata.total_pages;
+    return this.metadata.total_pages as number;
   }
 
 
@@ -92,7 +91,7 @@ export class SearchResult<T> {
    * Return total number of items matched by current search
    */
   get total_count(): number {
-    return this.metadata.total_count;
+    return this.metadata.total_count as number;
   }
 
 
