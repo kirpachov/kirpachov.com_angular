@@ -1,7 +1,12 @@
-<div class="container">
+<div class="container w-auto">
   <div class="row">
-    <ng-container *ngFor="let proj of projects">
-      <div class="col col-12 col-sm-6 col-lg-4 col-xl-3 mb-3">
+    <div class="col-12">
+      <h1 class="main-text mt-0"><ng-container i18n>Projects</ng-container></h1>
+      <p i18n>Here you can see some of my projects.</p>
+    </div>
+
+    <ng-container *ngFor="let proj of projects | async">
+      <div class="col col-12 col-sm-6 col-lg-4 col-xl-3 mb-3 d-flex">
         <app-project-card [location]="'projects'" [project]="proj"></app-project-card>
       </div>
     </ng-container>

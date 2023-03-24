@@ -1,4 +1,8 @@
 import { Component } from '@angular/core';
+import { AutoDestroy } from '@core/lib/autodestroy';
+import { SearchResult } from '@core/lib/search-result.model';
+import { ProjectsService } from '@core/services/http/projects.service';
+import { BehaviorSubject, Subject, Subscription, takeUntil } from 'rxjs';
 import { Project } from 'src/core/models/project';
 
 @Component({
@@ -7,23 +11,33 @@ import { Project } from 'src/core/models/project';
   styleUrls: ['./projects-page.component.scss']
 })
 export class ProjectsPageComponent {
-  projects?: Project[];
-  // readonly projects: PublicProject[] = Array.from({ length: 15 }).map((el, index) => ({
-  //   title: `Project ${index + 1}`,
-  //   id: index + 1,
-  //   description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nunc ut aliquam aliquam, nunc nisl aliquet nisl, eget aliquam nisl lorem quis nisl.`,
-  //   prodUrl: 'https://google.com',
-  //   startDate: new Date('2020-01-01'),
-  //   endDate: new Date(),
-  //   links: [
-  //     {
-  //       title: 'link 1',
-  //       url: 'https://google.com'
-  //     },
-  //     {
-  //       title: 'link 2',
-  //       url: `${window.location.origin}/link-to-local-page/${index + 1}`
-  //     }
-  //   ]
-  // }));
+
+  @AutoDestroy destroy$: Subject<void> = new Subject<void>();
+
+  projects: BehaviorSubject<Project[]> = new BehaviorSubject<Project[]>([]);
+
+  // data: BehaviorSubject<SearchResult<Project> | undefined> = new BehaviorSubject<SearchResult<Project> | undefined>(undefined);
+
+  private loadProjects?: Subscription;
+
+  get loading(): boolean {
+    return this.loadProjects?.closed === false;
+  }
+
+  constructor(
+    private readonly service: ProjectsService
+  ) {
+
+  }
+
+  ngOnInit(): void {
+    this.load();
+  }
+
+  load(): void {
+    this.service.search().pipe(takeUntil(this.destroy$)).subscribe((data: SearchResult<Project>) => {
+      // this.data.next(data)
+      this.projects.next(data.items ?? []);
+    })
+  }
 }
