@@ -11,6 +11,8 @@ import { ViewProjectPageComponent } from './pages/view-project-page/view-project
 import { ContactFormModule } from '@core/components/contact-form/contact-form.module';
 import { TuiFormatPhonePipeModule, TuiLinkModule, TuiLoaderModule } from '@taiga-ui/core';
 import { UnderlinedButtonModule } from '@core/components/underlined-button/underlined-button.module';
+import { CreditsPageComponent } from './pages/credits-page/credits-page.component';
+import { MatIconModule } from '@angular/material/icon';
 
 
 @NgModule({
@@ -18,7 +20,8 @@ import { UnderlinedButtonModule } from '@core/components/underlined-button/under
     AboutPageComponent,
     ProjectsPageComponent,
     ContactsPageComponent,
-    ViewProjectPageComponent
+    ViewProjectPageComponent,
+    CreditsPageComponent
   ],
   imports: [
     CommonModule,
@@ -26,6 +29,7 @@ import { UnderlinedButtonModule } from '@core/components/underlined-button/under
     HomePage1Module,
     ProjectCardModule,
     ContactFormModule,
+    MatIconModule,
     UnderlinedButtonModule,
     TuiFormatPhonePipeModule,
     TuiLoaderModule,

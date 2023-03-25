@@ -1,0 +1,32 @@
+<div class="container w-auto">
+  <div class="row">
+    <div class="col-12">
+      <h1 class="main-text mt-0">
+        <ng-container i18n>Credits</ng-container>
+      </h1>
+      <p i18n>I've developed this website by my own. I've used some cool libraries/frameworks to make everything
+        better & faster.</p>
+
+      <ul>
+        <li *ngFor="let item of items">
+          <div class="d-flex align-items-center">
+            <img class="d-block my-0 me-2 p-0" [src]="item.imgSrc" *ngIf="item.imgSrc">
+
+            <ng-template #justTitle>
+              <span class="main-text me-1">
+                {{item.title}}
+              </span>
+            </ng-template>
+
+            <a *ngIf="item.link && item.link.length > 0; else justTitle" target="_blank" [href]="item.link"
+              class="d-flex align-items-center m-0 p-0 classic-link">
+              <ng-container *ngTemplateOutlet="justTitle" ></ng-container>
+
+              <mat-icon>open_in_new</mat-icon>
+            </a>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

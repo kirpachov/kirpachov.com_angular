@@ -5,6 +5,7 @@ import { ProjectsPageComponent } from './pages/projects-page/projects-page.compo
 import { ContactsPageComponent } from './pages/contacts-page/contacts-page.component';
 import { HomePageComponent } from 'src/core/components/home-page1/components/home-page/home-page.component';
 import { ViewProjectPageComponent } from './pages/view-project-page/view-project-page.component';
+import { CreditsPageComponent } from './pages/credits-page/credits-page.component';
 
 const routes: Routes = [
   {
@@ -32,6 +33,10 @@ const routes: Routes = [
   {
     path: 'rfq',
     component: ContactsPageComponent
+  },
+  {
+    path: 'credits',
+    component: CreditsPageComponent
   }
 ];
 

@@ -1,0 +1,22 @@
+:host{
+  img {
+    max-width: 50px;
+    max-height: 50px;
+  }
+
+  li{
+    list-style: persian;
+    margin-bottom: 2rem;
+  }
+
+  .tech-grid {
+    display: grid;
+    grid-template-columns: 20% auto;
+
+    .content{
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+    }
+  }
+}
