@@ -29,6 +29,10 @@ const routes: Routes = [
     path: 'contacts',
     component: ContactsPageComponent
   },
+  {
+    path: 'rfq',
+    component: ContactsPageComponent
+  }
 ];
 
 @NgModule({
