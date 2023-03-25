@@ -1,7 +1,7 @@
 <div class="container w-auto">
-  <div class="row">
+  <div class="row flex-xl-row flex-column-reverse" id="main">
     <div class="offset-xl-1 col col-12 col-xl-5 paragraph">
-      <span class="title main-text" i18n>Ciao, call me Sasha.</span>
+      <span (click)="saveSection('main')" class="title main-text" i18n>Ciao, call me Sasha.</span>
 
       <span class="text" i18n>
         Sasha is the way everybody calls me, even if it's far away from my official name - Oleksandr - but it's
@@ -27,13 +27,13 @@
     </div>
   </div>
 
-  <div class="row">
+  <div class="row" id="studies">
     <div class="offset-xl-1 col col-12 col-xl-5">
       <img src="assets/images/zuccante-biennio.jpg">
     </div>
 
     <div class="col col-12 col-xl-5 paragraph">
-      <span class="title main-text" i18n>Studies</span>
+      <span (click)="saveSection('studies')" class="title main-text" i18n>Studies</span>
       <span class="text" i18n>
         I graduated in Computer Science from the Carlo Zuccante Institute in Mestre Venice.
         I will start studying Information Science at Ca' Foscari University of Venice in September 2023.
@@ -43,9 +43,9 @@
     </div>
   </div>
 
-  <div class="row">
+  <div id="work" class="row flex-xl-row flex-column-reverse">
     <div class="offset-xl-1 col col-12 col-xl-5 paragraph">
-      <span class="title main-text" i18n>Work</span>
+      <span (click)="saveSection('work')" class="title main-text" i18n>Work</span>
 
       <span class="text" i18n>
         I currently work as a web developer at Demetra Opinioni.net Srl since March 2021.
@@ -59,13 +59,13 @@
     </div>
   </div>
 
-  <div class="row">
+  <div id="tech" class="row">
     <div class="offset-xl-1 col col-12 col-xl-5">
       <img src="assets/images/angular+rails.jpg">
     </div>
 
     <div class="col col-12 col-xl-5 paragraph">
-      <span class="title main-text" i18n>Tech stack</span>
+      <span (click)="saveSection('tech')" class="title main-text" i18n>Tech stack</span>
 
       <span class="text" i18n>
         I learned the basics of computer science at ITIS C.Zuccante,
@@ -79,9 +79,9 @@
     </div>
   </div>
 
-  <div class="row">
+  <div id="hobbies" class="row flex-xl-row flex-column-reverse">
     <div class="offset-xl-1 col col-12 col-xl-5 paragraph">
-      <span class="title main-text" i18n>Hobbies and passions</span>
+      <span (click)="saveSection('hobbies')" class="title main-text" i18n>Hobbies and passions</span>
 
       <span class="text" i18n>
         The truth is that I love doing many things, I'm very open-minded and extremely ambitious.
