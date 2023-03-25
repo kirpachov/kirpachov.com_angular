@@ -13,7 +13,7 @@
   <app-projects-slideshow class="mb-3" [projects]="projects" ></app-projects-slideshow>
 
   <div class="d-flex">
-    <button class="mx-auto" noBordersButtonArrow [arrowPosition]="'before'" [arrowDirection]="'bottom'" >
+    <button class="mx-auto" noBordersButtonArrow [arrowPosition]="'before'" [arrowDirection]="'bottom'" (click)="nextSection.emit()" >
       <ng-container i18n>Scopri come lavoro</ng-container>
     </button>
   </div>

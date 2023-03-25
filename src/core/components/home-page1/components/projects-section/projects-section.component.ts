@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { Subscription, takeUntil } from 'rxjs';
 import { SearchResult } from 'src/core/lib/search-result.model';
 import { WithSubscriptions } from 'src/core/lib/with-autodestroy';
@@ -11,6 +11,8 @@ import { ProjectsService } from 'src/core/services/http/projects.service';
   styleUrls: ['./projects-section.component.scss']
 })
 export class ProjectsSectionComponent extends WithSubscriptions {
+
+  @Output() nextSection: EventEmitter<void> = new EventEmitter<void>();
 
   projects?: Project[];
 

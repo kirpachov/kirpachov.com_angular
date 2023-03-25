@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-main-section',
@@ -7,4 +7,5 @@ import { Component } from '@angular/core';
 })
 export class MainSectionComponent {
 
+  @Output() nextSection: EventEmitter<void> = new EventEmitter<void>();
 }

@@ -2,7 +2,7 @@
   <div class="offset-md-1 col col-12 col-md-5 mb-3">
 
     <div class="d-flex h-100 align-items-center">
-      <button noBordersButtonArrow [arrowPosition]="'before'" [arrowDirection]="'bottom'" >
+      <button (click)="nextSection.emit()" noBordersButtonArrow [arrowPosition]="'before'" [arrowDirection]="'bottom'">
         <ng-container i18n>Scopri di più sul mio lavoro</ng-container>
       </button>
     </div>
