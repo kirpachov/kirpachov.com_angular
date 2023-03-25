@@ -14,6 +14,7 @@ import { UnderlinedButtonModule } from "src/core/components/underlined-button/un
 import { HttpClientModule } from "@angular/common/http";
 import { ConfigsService } from "src/core/services/configs.service";
 import { initialLoadConfigs } from "src/core/lib/initial-load-configs";
+import { BorderedButtonModule } from "@core/components/bordered-button/bordered-button.module";
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { initialLoadConfigs } from "src/core/lib/initial-load-configs";
     UnderlinedButtonModule,
     TuiRootModule,
     TuiModeModule,
+    BorderedButtonModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: !isDevMode(),
       // Register the ServiceWorker as soon as the application is stable

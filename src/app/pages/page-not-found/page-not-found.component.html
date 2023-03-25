@@ -1,1 +1,14 @@
-<p>page-not-found works!</p>
+<div class="d-flex flex-row align-items-center h-100 justify-content-center">
+  <div class="">
+    <h1 class="mt-0 mb-4 d-block" >
+      <ng-container i18n>Oops! Page not found.</ng-container>
+    </h1>
+
+    <div class="width-fit-content" >
+      <a #link class="d-flex align-items-center" routerLink="/" bordered>
+        <ng-container i18n>Go to home page</ng-container>
+        ({{secondsLeft}})
+      </a>
+    </div>
+  </div>
+</div>

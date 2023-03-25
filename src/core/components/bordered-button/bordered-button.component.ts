@@ -1,4 +1,4 @@
-import { Component, EventEmitter, HostBinding, HostListener, Input, Output } from '@angular/core';
+import { Component, ElementRef, EventEmitter, HostBinding, HostListener, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'a[bordered], button[bordered]',
@@ -18,6 +18,10 @@ export class BorderedButtonComponent {
   private hovering: boolean = false;
 
   @Output() private readonly hoveringChange = new EventEmitter<boolean>();
+
+  constructor(
+    public readonly elementRef: ElementRef<HTMLElement>
+  ) { }
 
   @HostListener('mouseenter')
   onMouseEnter() {
