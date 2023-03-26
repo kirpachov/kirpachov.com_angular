@@ -14,7 +14,7 @@ export class ProjectCardComponent {
   @Input() project?: Project;
 
   get title(): string | undefined {
-    return this.project?.description;
+    return this.project?.title;
   }
 
   get description(): string | undefined {

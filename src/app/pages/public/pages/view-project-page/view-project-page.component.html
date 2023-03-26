@@ -1,1 +1,41 @@
-<p>view-project-page works!</p>
+<ngx-page-in-modal [navigateBackOnClose]="true" #modal>
+  <tui-loader [overlay]="true" [showLoader]="loading">
+    <div class="d-flex flex-row align-items-center">
+      <h1 class="flex-grow-1 main-text" [innerText]="project?.title"></h1>
+
+      <button bordered (click)="modal.close()">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+
+    <div class="d-flex flex-column">
+      <!-- <h4 class="mt-0 main-text" [innerText]="project?.title"></h4> -->
+
+      <span class="d-flex align-items-center" *ngIf="project?.start_date">
+        {{ project?.start_date | date: 'MMM y' }}
+        <mat-icon>arrow_forward</mat-icon>
+
+        <ng-template #nowT>
+          <ng-container i18n>Now</ng-container>
+        </ng-template>
+
+        <ng-container *ngIf="project?.end_date; else nowT">
+          {{ project?.end_date | date: 'MMM y' }}
+        </ng-container>
+      </span>
+
+      <ng-container *ngIf="project && project.production_urls">
+        <ul class="p-0 mb-0" >
+          <li class="nobullet mb-3" *ngFor="let item of project.production_urls">
+            <a class="width-fit-content d-flex align-items-center" underlined target="_blank" [href]="item">
+              <span class="me-1" [innerText]="item"></span>
+              <mat-icon>open_in_new</mat-icon>
+            </a>
+          </li>
+        </ul>
+      </ng-container>
+
+      <p class="mt-0" [innerText]="project?.description"></p>
+    </div>
+  </tui-loader>
+</ngx-page-in-modal>

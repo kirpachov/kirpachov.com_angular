@@ -26,7 +26,9 @@
       {{startDate | date: 'y'}}
     </span>
 
-    <span class="mx-1">-</span>
+    <span class="mx-1">
+      <mat-icon>arrow_forward</mat-icon>
+    </span>
 
     <span *ngIf="endDate; else noEndDate">
       {{endDate | date: 'y'}}

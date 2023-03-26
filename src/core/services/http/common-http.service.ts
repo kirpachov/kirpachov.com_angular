@@ -34,7 +34,7 @@ export abstract class CommonHttpService<T> extends DomainService {
   get(id: number, params = {}): Observable<T> {
     if (id == undefined) throw new Error(`Invalid id has been passed to service.get(${id})`);
     // TODO USE REGEXP TO VALIDATE URL
-    return this.http.get(`${this.getBaseUrl()}${id}`, { params: params }).pipe(
+    return this.http.get(`${this.getBaseUrl()}/${id}`, { params: params }).pipe(
       map((data: any) => {
         let newValue: T = this.type ? new this.type(data) : data;
         if (newValue && this.type) this.itemLoad.emit(newValue);

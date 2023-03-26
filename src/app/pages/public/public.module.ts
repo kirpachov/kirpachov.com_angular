@@ -13,6 +13,8 @@ import { TuiFormatPhonePipeModule, TuiLinkModule, TuiLoaderModule } from '@taiga
 import { UnderlinedButtonModule } from '@core/components/underlined-button/underlined-button.module';
 import { CreditsPageComponent } from './pages/credits-page/credits-page.component';
 import { MatIconModule } from '@angular/material/icon';
+import { NgxPageInModalModule } from 'node_modules/ngx-page-in-modal';
+import { BorderedButtonModule } from '@core/components/bordered-button/bordered-button.module';
 
 
 @NgModule({
@@ -33,6 +35,8 @@ import { MatIconModule } from '@angular/material/icon';
     UnderlinedButtonModule,
     TuiFormatPhonePipeModule,
     TuiLoaderModule,
+    NgxPageInModalModule,
+    BorderedButtonModule
   ]
 })
 export class PublicModule { }
