@@ -8,6 +8,9 @@ import { UnderlinedButtonModule } from '../underlined-button/underlined-button.m
 import { BorderedButtonModule } from '../bordered-button/bordered-button.module';
 import { MatIconModule } from '@angular/material/icon';
 import { MenuIconModule } from '../menu-icon/menu-icon.module';
+import { ReactiveFormsModule } from '@angular/forms';
+import { TuiDataListModule, TuiHostedDropdownModule } from '@taiga-ui/core';
+import { TuiFlagPipeModule } from '@taiga-ui/core';
 
 
 
@@ -24,6 +27,10 @@ import { MenuIconModule } from '../menu-icon/menu-icon.module';
     BorderedButtonModule,
     MatIconModule,
     MenuIconModule,
+    ReactiveFormsModule,
+    TuiHostedDropdownModule,
+    TuiDataListModule,
+    TuiFlagPipeModule,
   ],
   exports: [
     PublicWrapperComponent

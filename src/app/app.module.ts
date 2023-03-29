@@ -1,7 +1,7 @@
 import { NgDompurifySanitizer } from "@tinkoff/ng-dompurify";
 import { TuiRootModule, TuiDialogModule, TuiAlertModule, TUI_SANITIZER, TuiModeModule, TuiThemeNightModule } from "@taiga-ui/core";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { APP_INITIALIZER, NgModule, isDevMode } from '@angular/core';
+import { APP_INITIALIZER, LOCALE_ID, NgModule, isDevMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -42,6 +42,7 @@ import { BorderedButtonModule } from "@core/components/bordered-button/bordered-
     })
   ],
   providers: [
+    { provide: LOCALE_ID, useValue: 'it-IT' },
     { provide: TUI_SANITIZER, useClass: NgDompurifySanitizer },
     { provide: APP_INITIALIZER, useFactory: initialLoadConfigs, deps: [ConfigsService], multi: true },
   ],

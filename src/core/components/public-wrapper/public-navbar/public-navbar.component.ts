@@ -1,7 +1,15 @@
-import { Component } from '@angular/core';
+import { Component, Inject, LOCALE_ID } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AutoDestroy } from '@core/lib/autodestroy';
 import { Subject, takeUntil } from 'rxjs';
+import {TuiCountryIsoCode} from '@taiga-ui/i18n';
+
+export interface LangData {
+  name: string;
+  code: string;
+  iso: TuiCountryIsoCode;
+}
 
 @Component({
   selector: 'app-public-navbar',
@@ -26,24 +34,48 @@ export class PublicNavbarComponent {
     this.isMenuOpenChange$.next(value);
   }
 
+  readonly languages: LangData[] = [
+    {
+      name: "English",
+      code: "en",
+      iso: TuiCountryIsoCode.US
+    },
+    {
+      name: "Italiano",
+      code: "it",
+      iso: TuiCountryIsoCode.IT
+    },
+  ];
+
+  ngOnInit() { }
+
+  changePath(code: LangData['code']) {
+    location.replace(`/${code}/`);
+  }
+
+  currentLanguage: LangData = this.languages[0];
+
   constructor(
-    private readonly router: Router
+    private readonly router: Router,
+    @Inject(LOCALE_ID) public localeId: string
   ) {
-    this.isMenuOpenChange$.pipe(
-      takeUntil(this.destroy$)
-    ).subscribe((value) => {
+    this.isMenuOpenChange$.pipe(takeUntil(this.destroy$)).subscribe((value) => {
       this.updateBodyClass();
     });
 
-    this.router.events.pipe(
-      takeUntil(this.destroy$)
-    ).subscribe(() => {
+    this.router.events.pipe(takeUntil(this.destroy$)).subscribe(() => {
       this.isMenuOpen = false;
+      this.currentLanguage = this.getCurrentLanguage();
     });
   }
 
-  triggerMenu(){
+  triggerMenu() {
     this.isMenuOpen = !this.isMenuOpen;
+  }
+
+  private getCurrentLanguage(): LangData {
+    const path: "it" | "en" | "" = location.pathname.replace(/\/+/g, '') as any;
+    return this.languages.find(lang => lang.code === path) || this.languages[0];
   }
 
   private updateBodyClass() {

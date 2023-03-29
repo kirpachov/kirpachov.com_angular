@@ -13,10 +13,24 @@
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
+      "i18n": {
+        "sourceLocale": "en",
+        "locales": {
+          "": {
+            "translation": "src/locale/messages.en.xlf",
+            "baseHref": "/"
+          },
+          "it": {
+            "translation": "src/locale/messages.it.xlf",
+            "baseHref": "/it/"
+          }
+        }
+      },
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "i18nMissingTranslation": "warning",
             "outputPath": "dist/kirpachov.com_portfolio",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -54,8 +68,8 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kb",
-                  "maximumError": "1mb"
+                  "maximumWarning": "1mb",
+                  "maximumError": "2mb"
                 },
                 {
                   "type": "anyComponentStyle",
@@ -97,7 +111,9 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "kirpachov.com_portfolio:build"
+            "browserTarget": "kirpachov.com_portfolio:build",
+            "outputPath": "src/locale",
+            "i18nFormat": "xlf"
           }
         },
         "test": {

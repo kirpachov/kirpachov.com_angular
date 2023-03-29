@@ -8,6 +8,10 @@
     }
   }
 
+  img.flag{
+    max-height: 25px;
+  }
+
   .fullsize-navbar-links {
     background-color: var(--app-background-color);
     transition: max-height .5s linear;
