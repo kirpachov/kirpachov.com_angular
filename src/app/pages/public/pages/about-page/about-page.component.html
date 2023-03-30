@@ -1,40 +1,44 @@
 <div class="container w-auto">
   <div class="row flex-xl-row flex-column-reverse" id="main">
     <div class="offset-xl-1 col col-12 col-xl-5 paragraph">
-      <span (click)="saveSection('main')" class="title main-text" i18n>Ciao, call me Sasha.</span>
+      <span (click)="saveSection('main')" class="title main-text" i18n="@@AboutPage:MainSection:title">Ciao, call me Sasha.</span>
 
-      <span class="text" i18n>
+      <span class="text" i18n="@@AboutPage:MainSection:p1">
         Sasha is the way everybody calls me, even if it's far away from my official name - Oleksandr - but it's
-        definetly easyier.
+        definetly easier.
       </span>
-      <span class="text" i18n>
+
+      <span class="text" i18n="@@AboutPage:MainSection:p2">
         I was born in Bila Tzerkva, a city 80km south of Kiev, the 16 may 2002.
       </span>
-      <span class="text" i18n>
+
+      <span class="text" i18n="@@AboutPage:MainSection:p3">
         I fall in love with development during the third year of computer science in ITIS C.Zuccante, thanks to my
         computer science teacher.
       </span>
-      <span class="text" i18n>
+
+      <span class="text" i18n="@@AboutPage:MainSection:p4">
         From there, my life changed. I started practicing something I actually liked with good results.
       </span>
-      <span class="text" i18n>
+
+      <span class="text" i18n="@@AboutPage:MainSection:p5">
         I am constantly searching for new ideas and ways to improve my code and software.
       </span>
     </div>
 
     <div class="col col-12 col-xl-5">
-      <img src="assets/images/home1.jpg">
+      <img i18n-alt="@@AboutPage:MainSection:ImageAlt" alt="Photo of me" src="assets/images/home1.jpg">
     </div>
   </div>
 
   <div class="row" id="studies">
     <div class="offset-xl-1 col col-12 col-xl-5">
-      <img src="assets/images/zuccante-biennio.jpg">
+      <img i18n-alt="@@AboutPage:StudiesSection:ImageAlt" alt="Image of ITIS C. Zuccante" src="assets/images/zuccante-biennio.jpg">
     </div>
 
     <div class="col col-12 col-xl-5 paragraph">
-      <span (click)="saveSection('studies')" class="title main-text" i18n>Studies</span>
-      <span class="text" i18n>
+      <span (click)="saveSection('studies')" class="title main-text" i18n="@@AboutPage:StudiesSection:title">Studies</span>
+      <span class="text" i18n="@@AboutPage:StudiesSection:p1">
         I graduated in Computer Science from the Carlo Zuccante Institute in Mestre Venice.
         I will start studying Information Science at Ca' Foscari University of Venice in September 2023.
         The idea is to complete the three-year degree in Information Science and then pursue a master's degree in
@@ -45,9 +49,9 @@
 
   <div id="work" class="row flex-xl-row flex-column-reverse">
     <div class="offset-xl-1 col col-12 col-xl-5 paragraph">
-      <span (click)="saveSection('work')" class="title main-text" i18n>Work</span>
+      <span (click)="saveSection('work')" class="title main-text" i18n="@@AboutPage:WorkSection:title">Work</span>
 
-      <span class="text" i18n>
+      <span class="text" i18n="@@AboutPage:WorkSection:p1">
         I currently work as a web developer at Demetra Opinioni.net Srl since March 2021.
         However, I started working at a very young age,
         as I have always been fond of freedom and independence.
@@ -55,7 +59,7 @@
     </div>
 
     <div class="col col-12 col-xl-5 ">
-      <img src="assets/images/logo-demetra.png">
+      <img i18n-alt="@@AboutPage:WorkSection:ImageAlt" alt="Demetra Opinioni.net srl logo" src="assets/images/logo-demetra.png">
     </div>
   </div>
 
@@ -65,9 +69,9 @@
     </div>
 
     <div class="col col-12 col-xl-5 paragraph">
-      <span (click)="saveSection('tech')" class="title main-text" i18n>Tech stack</span>
+      <span (click)="saveSection('tech')" class="title main-text" i18n="@@AboutPage:TechSection:title">Tech stack</span>
 
-      <span class="text" i18n>
+      <span class="text" i18n="@@AboutPage:TechSection:p1">
         I learned the basics of computer science at ITIS C.Zuccante,
         a high school for computer science students.
         During those years, I worked with PHP, mySQL, CSS, JavaScript, HTML, Dart, and some Java.
@@ -81,20 +85,20 @@
 
   <div id="hobbies" class="row flex-xl-row flex-column-reverse">
     <div class="offset-xl-1 col col-12 col-xl-5 paragraph">
-      <span (click)="saveSection('hobbies')" class="title main-text" i18n>Hobbies and passions</span>
+      <span (click)="saveSection('hobbies')" class="title main-text" i18n="@@AboutPage:HobbiesSection:title">Hobbies and passions</span>
 
-      <span class="text" i18n>
+      <span class="text" i18n="@@AboutPage:HobbiesSection:p1">
         The truth is that I love doing many things, I'm very open-minded and extremely ambitious.
         I can briefly mention some of my passions, so as not to bore you.
       </span>
 
-      <span class="text" i18n>
+      <span class="text" i18n="@@AboutPage:HobbiesSection:p2">
         I love cars, motorcycles, and extreme sports.
         Anything that can give me an adrenaline rush is a hobby of mine.
         I believe that adrenaline is one of the truest sensations that life can give us.
       </span>
 
-      <span class="text" i18n>
+      <span class="text" i18n="@@AboutPage:HobbiesSection:p3">
         I love animals.
         I love all animals, and maybe in another life, I would have been a veterinarian.
         Animals are never fake, they never say one thing and mean another,
@@ -102,13 +106,13 @@
         I have two cats: Tom, an 8-year-old ginger cat, and Kikka, a 4-year-old Siamese kitten.
       </span>
 
-      <span class="text" i18n>
+      <span class="text" i18n="@@AboutPage:HobbiesSection:p4">
         I love learning new things.
         "Curiosity is everything" is a phrase that I fully endorse.
         Sometimes, I even get chills when I discover something new thanks to a documentary or a book.
       </span>
 
-      <span class="text" i18n>
+      <span class="text" i18n="@@AboutPage:HobbiesSection:p5">
         I love sports.
         Sports are a wonderful thing.
         They allow us to test our skills while doing something that is good for our body and soul.
@@ -117,7 +121,7 @@
         old.
       </span>
 
-      <span class="text" i18n>
+      <span class="text" i18n="@@AboutPage:HobbiesSection:p6">
         I love my family.
         Okay, maybe it's not a hobby, but I talked about all the things I love, and I couldn't not talk about my family.
         My mother took me away from my hometown (Bila Tzerkva, Ukraine) when I was 7 years old, to give me a better life
@@ -130,7 +134,7 @@
     </div>
 
     <div class="col col-12 col-xl-5">
-      <img src="assets/images/gatti1.jpg">
+      <img i18n-alt="@@AboutPage:HobbiesSection:ImageAlt" alt="Image of my cats" src="assets/images/gatti1.jpg">
     </div>
   </div>
 </div>

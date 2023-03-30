@@ -3,13 +3,13 @@
     <div class="row">
       <div class="col-12">
         <h1 class="main-text mt-0">
-          <ng-container i18n>Projects</ng-container>
+          <ng-container i18n="@@ProjetsPage:Title">Projects</ng-container>
         </h1>
-        <p i18n>Here you can see some of my projects.</p>
+        <p i18n="@@ProjectsPage:Description">Here you can see some of my projects.</p>
       </div>
 
       <ng-container *ngIf="!(projects && projects.length > 0) && loading">
-        <p i18n>Loading projects, just a moment...</p>
+        <p i18n="@@ProjectsPage:LoadingText">Loading projects, just a moment...</p>
       </ng-container>
 
       <ng-container *ngFor="let proj of projects$ | async">

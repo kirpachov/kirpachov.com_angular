@@ -29,16 +29,11 @@
   </button>
 
   <div class="navbar-links | d-none d-md-flex flex-row align-items-center">
-    <!-- <a class="simple-link colored-transition" underlined routerLink="/blog" i18n>Blog</a> -->
-    <a class="simple-link colored-transition" underlined routerLink="/about" i18n>About</a>
-    <a class="simple-link colored-transition" underlined routerLink="/projects" i18n>Projects</a>
-    <a class="simple-link text-nowrap" bordered routerLink="/contacts" i18n>Contact me</a>
+    <a class="simple-link colored-transition" underlined routerLink="/about" i18n="@@PublicNavbar:Link:About">About</a>
+    <a class="simple-link colored-transition" underlined routerLink="/projects" i18n="@@PublicNavbar:Link:Projects">Projects</a>
+    <a class="simple-link text-nowrap" bordered routerLink="/contacts" i18n="@@PublicNavbar:Link:ContactMe">Contact me</a>
 
     <ng-container *ngTemplateOutlet="langSelectTemp"></ng-container>
-
-    <!-- <select [formControl]="currentLocale" >
-      <option *ngFor="let loc of locales" [value]="loc" [innerText]="loc.name" ></option>
-    </select> -->
   </div>
 </div>
 
@@ -47,10 +42,10 @@
   [ngClass]="{'open': isMenuOpen}">
   <div class="justify-content-around d-flex flex-column align-items-center my-auto"
     [style]="{'max-height': '350px', 'height': '50%'}">
-    <!-- <a class="simple-link colored-transition" underlined routerLink="/blog" i18n>Blog</a> -->
-    <a class="simple-link colored-transition" underlined routerLink="/about" i18n>About</a>
-    <a class="simple-link colored-transition" underlined routerLink="/projects" i18n>Projects</a>
-    <a class="simple-link text-nowrap" bordered routerLink="/contacts" i18n>Contact me</a>
+    <a class="simple-link colored-transition" underlined routerLink="/about" i18n="@@PublicNavbar:MobileLink:About">About</a>
+    <a class="simple-link colored-transition" underlined routerLink="/projects" i18n="@@PublicNavbar:MobileLink:Projects">Projects</a>
+    <a class="simple-link text-nowrap" bordered routerLink="/contacts" i18n="@@PublicNavbar:MobileLink:ContactMe">Contact me</a>
+
     <ng-container *ngTemplateOutlet="langSelectTemp"></ng-container>
   </div>
 </div>

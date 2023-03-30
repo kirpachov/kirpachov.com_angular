@@ -71,11 +71,11 @@ export class ContactFormComponent {
       takeUntil(this.destroy$),
     ).subscribe(
       (successData: ContactReturnData) => {
-        this.notifications.success($localize`Your request has been sent. I'll contact you as soon as possible.`)
+        this.notifications.success($localize`:@@ContactFormConfirm:Your request has been sent. I'll contact you as soon as possible.`)
         this.reset();
       },
       (e: HttpErrorResponse) => {
-        this.notifications.error($localize`An error occurred while sending your request. Please try again later.`);
+        this.notifications.error($localize`:@@ContactFormError:An error occurred while sending your request. Please try again later.`);
         if (e.status === 400 || e.status === 422) ReactiveErrors.assignErrorsToForm(this.form, e);
       }
     );

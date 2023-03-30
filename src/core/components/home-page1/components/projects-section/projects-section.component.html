@@ -1,9 +1,7 @@
 <!-- flex-column-reverse flex-md-row -->
 <div class="row ">
   <div class="col col-12 mb-3">
-    <h1 class="main-text mb-4">
-      Progetti
-    </h1>
+    <h1 class="main-text mb-4" i18n="@@HomePage:ProjectsSection:Title">Projects</h1>
 
     <!-- <p class="secondary-text big-undertitle">
       Ho sviluppato vari software, eccone qualcuno.
@@ -14,7 +12,7 @@
 
   <div class="d-flex">
     <button class="mx-auto" noBordersButtonArrow [arrowPosition]="'before'" [arrowDirection]="'bottom'" (click)="nextSection.emit()" >
-      <ng-container i18n>Scopri come lavoro</ng-container>
+      <ng-container i18n="@@HomePage:ProjectsSection:FindOutHowIWork">Find out how I work</ng-container>
     </button>
   </div>
 </div>

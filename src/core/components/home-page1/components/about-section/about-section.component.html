@@ -3,21 +3,20 @@
 
     <div class="d-flex h-100 align-items-center">
       <button (click)="nextSection.emit()" noBordersButtonArrow [arrowPosition]="'before'" [arrowDirection]="'bottom'">
-        <ng-container i18n>Scopri di più sul mio lavoro</ng-container>
+        <ng-container i18n="@@HomePage:AboutSection:FindOutMoreButtonLabel">Find out more about my work</ng-container>
       </button>
     </div>
 
   </div>
   <div class="col col-12 col-md-5 mb-3">
     <h1 class="main-text mb-4">
-      Ciao, chiamami Sasha. Sono uno sviluppatore web.
+      <ng-container i18n="@@HomePage:AboutSection:Title">Ciao, call me Sasha. I'm a full stack web developer.</ng-container>
     </h1>
 
     <p class="secondary-text big-undertitle">
-      Sono un giovane nerd che cerca di semplificare la vita alle persone automatizzando
-      processi attraverso software di qualità.
+      <ng-container i18n="@@HomePage:AboutSection:Subtitle">I'm a young nerd trying to make life easier through quality software.</ng-container>
     </p>
 
-    <a underlined routerLink="about">Scopri di più su di me</a>
+    <a underlined routerLink="about" id="@@HomePage:AboutSection:FindMoreAboutMeButtonLabel">Find out more about me</a>
   </div>
 </div>
