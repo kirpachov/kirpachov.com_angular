@@ -112,8 +112,7 @@
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
             "browserTarget": "kirpachov.com_portfolio:build",
-            "outputPath": "src/locale",
-            "i18nFormat": "xlf"
+            "outputPath": "src/locale"
           }
         },
         "test": {
