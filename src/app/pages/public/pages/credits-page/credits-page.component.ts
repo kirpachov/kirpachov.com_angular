@@ -17,6 +17,7 @@ export class CreditsPageComponent {
     { title: "rxjs", imgSrc: `/assets/images/rxjs-logo.png`, link: `https://www.npmjs.com/package/rxjs` },
     { title: "zone.js", imgSrc: ``, link: `https://www.npmjs.com/package/zone.js` },
     { title: "cypress", imgSrc: `/assets/images/cypress-logo-dark.png`, link: `https://www.cypress.io/` },
+    { title: "PoEditor", imgSrc: `/assets/images/poeditor-logo.svg`, link: `https://poeditor.com/` },
     { title: "Ruby on Rails", imgSrc: `/assets/images/ror-dark-logo.png`, link: `https://rubyonrails.org/` },
     { title: "pg", imgSrc: ``, link: `https://rubygems.org/gems/pg` },
     { title: "puma", imgSrc: ``, link: `https://rubygems.org/gems/puma` },
