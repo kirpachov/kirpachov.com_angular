@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { LightThemeComponent } from './light-theme/light-theme.component';
 import { DarkThemeComponent } from './dark-theme/dark-theme.component';
 import { AppThemeComponent } from './app-theme/app-theme.component';
+import { TuiThemeNightModule } from '@taiga-ui/core';
 
 
 
@@ -13,7 +14,8 @@ import { AppThemeComponent } from './app-theme/app-theme.component';
     AppThemeComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    TuiThemeNightModule,
   ],
   exports: [
     AppThemeComponent

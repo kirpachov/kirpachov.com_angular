@@ -1,16 +1,15 @@
 <h1 class="main-text mt-0">
-  <ng-container i18n>Contact me</ng-container>
+  <ng-container i18n="@@ContactFormComponent:Title">Contact me</ng-container>
 </h1>
-<p i18n>I'll get in touch as soon as possible!</p>
+<p i18n="@@ContactFormComponent:Description">I'll get in touch as soon as possible!</p>
 
-<tui-theme-night></tui-theme-night>
 
 <form [formGroup]="form" (ngSubmit)="submit()">
   <tui-loader [overlay]="true" [showLoader]="saving">
     <div class="mb-3">
       <tui-input [tuiAutoFocus]="true" [formControlName]="'name'" [tuiTextfieldSize]="inputSize">
         <input tuiTextfield>
-        <ng-container i18n>Your full name</ng-container>
+        <ng-container i18n="@@ContactFormComponent:Form:Fullname">Your full name</ng-container>
       </tui-input>
 
       <app-errors *ngIf="se('name')" [errors]="e('name')"></app-errors>
@@ -19,7 +18,7 @@
     <div class="mb-3">
       <tui-input [formControlName]="'email'" [tuiTextfieldSize]="inputSize">
         <input tuiTextfield>
-        <ng-container i18n>Your work email</ng-container>
+        <ng-container i18n="@@ContactFormComponent:Form:Email">Your work email</ng-container>
       </tui-input>
 
       <app-errors *ngIf="se('email')" [errors]="e('email')"></app-errors>
@@ -27,14 +26,14 @@
 
     <div class="mb-3">
       <tui-text-area [expandable]="true" [tuiTextfieldSize]="inputSize" formControlName="message">
-        <ng-container i18n>Message</ng-container>
+        <ng-container i18n="@@ContactFormComponent:Form:Message">Message</ng-container>
       </tui-text-area>
 
       <app-errors *ngIf="se('message')" [errors]="e('message')"></app-errors>
     </div>
 
     <button tuiButton [disabled]="!canSubmit" type="submit" [size]="inputSize">
-      <ng-container i18n>Send message</ng-container>
+      <ng-container i18n="Send message text@@ContactFormComponent:Form:ConfirmButtonText">Send message</ng-container>
     </button>
   </tui-loader>
 </form>

@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/
 
 @Component({
   selector: 'app-dark-theme',
-  template: '',
+template: '<tui-theme-night></tui-theme-night>',
   styleUrls: [
     '../default-theme.scss',
     './dark-theme.component.scss'
