@@ -3,6 +3,8 @@
 # This script will iterate over the locales array and set the locale in the config.json file
 locales=('it-IT' 'en-US')  # Array di lingue
 
+absolute_file_path=$(realpath "$0")  # Percorso assoluto del file
+current_dir=$(dirname "$absolute_file_path")  # Directory corrente
 
 if ! command -v jq > /dev/null; then
   echo "jq is not installed, installing now... with 'sudo apt install -y jq'"
@@ -11,7 +13,7 @@ if ! command -v jq > /dev/null; then
 fi
 
 for locale in "${locales[@]}"; do
-  config_file="../dist/kirpachov.com_portfolio/${locale%%-*}/assets/config/config.json"  # Percorso del file di configurazione
+  config_file="$current_dir/../dist/kirpachov.com_portfolio/${locale%%-*}/assets/config/config.json"  # Percorso del file di configurazione
   echo "Setting locale to $locale in $config_file"
 
   if [[ ! -f "$config_file" ]]; then  # Se il file di configurazione non esiste
