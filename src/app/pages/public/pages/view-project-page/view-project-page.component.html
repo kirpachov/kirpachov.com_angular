@@ -12,7 +12,7 @@
       <!-- <h4 class="mt-0 main-text" [innerText]="project?.title"></h4> -->
 
       <span class="d-flex align-items-center" *ngIf="project?.start_date">
-        {{ project?.start_date | date: 'MMM y' }}
+        {{ project?.start_date | date: 'MMMM y' }}
         <mat-icon>arrow_forward</mat-icon>
 
         <ng-template #nowT>
@@ -20,7 +20,7 @@
         </ng-template>
 
         <ng-container *ngIf="project?.end_date; else nowT">
-          {{ project?.end_date | date: 'MMM y' }}
+          {{ project?.end_date | date: 'MMMM y' }}
         </ng-container>
       </span>
 
