@@ -17,8 +17,7 @@
         "sourceLocale": "en",
         "locales": {
           "": {
-            "translation": "src/locale/messages.en.xlf",
-            "baseHref": "/"
+            "translation": "src/locale/messages.xlf"
           },
           "it": {
             "translation": "src/locale/messages.it.xlf",
@@ -86,6 +85,9 @@
               "extractLicenses": false,
               "sourceMap": true,
               "namedChunks": true
+            },
+            "it": {
+              "localize": ["it"]
             }
           },
           "defaultConfiguration": "production"
@@ -104,6 +106,9 @@
             "development": {
               "browserTarget": "kirpachov.com_portfolio:build:development",
               "proxyConfig": "proxy.conf.json"
+            },
+            "it": {
+              "browserTarget": "kirpachov.com_portfolio:build:development,it"
             }
           },
           "defaultConfiguration": "development"

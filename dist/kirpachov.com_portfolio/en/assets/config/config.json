@@ -1,8 +1,3 @@
 {
-  "api.domain": "localhost:3010",
-  "api.secure": "false",
-  "api.path": "/",
-  "contact.email": "kirpachov.com@gmail.com",
-  "contact.phone": "+393515590063",
-  "contact.phone.prefix": "+39"
+  "locale": "en-US"
 }

@@ -9,6 +9,7 @@ const avaliableConfigs = [
   `contact.email`,
   `contact.phone`,
   `contact.phone.prefix`,
+  `locale`
 ] as const;
 export type ConfigKey = typeof avaliableConfigs[number];
 
@@ -30,8 +31,24 @@ export class ConfigsService {
     private readonly http: HttpClient,
   ) {}
 
+  /**
+   * Get a config value.
+   * Plase use this insted of getSync since if the configs are not loaded yet, this will wait for them to be loaded.
+   * @param key The key of the config to get.
+   * @returns An observable that emits the config value.
+   */
   get(key: ConfigKey): Observable<any> {
-    return of((this.configs ?? {})[key] || (this.defaults ?? {})[key]);
+    return of(this.getSync(key));
+  }
+
+  /**
+   * Get a config value.
+   * This is the sync version of get, use it only if you are sure that the configs are already loaded.
+   * @param key The key of the config to get.
+   * @returns The config value.
+   */
+  getSync(key: ConfigKey): any {
+    return (this.configs || {})[key] || (this.defaults || {})[key];
   }
 
   getMultiple(keys: ConfigKey[]): Observable<Record<string, any>> {

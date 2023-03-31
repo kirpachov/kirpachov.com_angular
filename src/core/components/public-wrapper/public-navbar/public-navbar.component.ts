@@ -57,7 +57,7 @@ export class PublicNavbarComponent {
 
   constructor(
     private readonly router: Router,
-    @Inject(LOCALE_ID) public localeId: string
+    @Inject(LOCALE_ID) private localeId: string
   ) {
     this.isMenuOpenChange$.pipe(takeUntil(this.destroy$)).subscribe((value) => {
       this.updateBodyClass();
@@ -74,8 +74,9 @@ export class PublicNavbarComponent {
   }
 
   private getCurrentLanguage(): LangData {
-    const path: "it" | "en" | "" = location.pathname.replace(/\/+/g, '') as any;
-    return this.languages.find(lang => lang.code === path) || this.languages[0];
+    const code = this.localeId.split('-')[0] as string;
+    // const code: "it" | "en" | "" = location.pathname.replace(/\/+/g, '') as any;
+    return this.languages.find(lang => lang.code === code) || this.languages[0];
   }
 
   private updateBodyClass() {

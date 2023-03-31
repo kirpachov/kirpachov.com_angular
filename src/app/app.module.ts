@@ -15,6 +15,8 @@ import { HttpClientModule } from "@angular/common/http";
 import { ConfigsService } from "src/core/services/configs.service";
 import { initialLoadConfigs } from "src/core/lib/initial-load-configs";
 import { BorderedButtonModule } from "@core/components/bordered-button/bordered-button.module";
+import { localeIdFactory } from "@core/lib/locale-id-factory";
+
 
 @NgModule({
   declarations: [
@@ -42,9 +44,13 @@ import { BorderedButtonModule } from "@core/components/bordered-button/bordered-
     })
   ],
   providers: [
-    { provide: LOCALE_ID, useValue: 'it-IT' },
     { provide: TUI_SANITIZER, useClass: NgDompurifySanitizer },
     { provide: APP_INITIALIZER, useFactory: initialLoadConfigs, deps: [ConfigsService], multi: true },
+    {
+      provide: LOCALE_ID,
+      deps: [ConfigsService],
+      useFactory: localeIdFactory,
+    }
   ],
   bootstrap: [AppComponent]
 })
