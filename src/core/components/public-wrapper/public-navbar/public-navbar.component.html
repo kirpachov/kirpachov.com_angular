@@ -15,7 +15,7 @@
   </tui-hosted-dropdown>
 </ng-template>
 
-<div class="navbar | px-2 py-5 d-flex flex-row align-items-center justify-content-around">
+<div #navbar class="navbar | px-2 py-5 d-flex flex-row align-items-center justify-content-around">
   <div class="width-fit-content">
     <a underlined routerLink="/">
       <h1 class="main-text | m-0">
@@ -44,7 +44,7 @@
 </div>
 
 <!-- justify-content-around -->
-<div class="fullsize-navbar-links | align-items-center d-flex d-md-none flex-column px-3"
+<div #navbarLinks class="fullsize-navbar-links | align-items-center d-flex d-md-none flex-column px-3"
   [ngClass]="{'open': isMenuOpen}">
   <div class="justify-content-around d-flex flex-column align-items-center my-auto"
     [style]="{'max-height': '350px', 'height': '50%'}">

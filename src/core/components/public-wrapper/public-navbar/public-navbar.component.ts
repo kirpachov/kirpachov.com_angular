@@ -1,4 +1,4 @@
-import { Component, Inject, LOCALE_ID } from '@angular/core';
+import { Component, ElementRef, HostListener, Inject, LOCALE_ID, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AutoDestroy } from '@core/lib/autodestroy';
@@ -22,6 +22,10 @@ export class PublicNavbarComponent {
   @AutoDestroy
   private readonly destroy$ = new Subject<void>();
 
+  @ViewChild('navbar', { static: true }) navbar?: ElementRef<HTMLDivElement>;
+
+  @ViewChild('navbarLinks', { static: true }) navbarLinks?: ElementRef<HTMLDivElement>;
+
   private readonly isMenuOpenChange$ = new Subject<boolean>();
 
   private _isMenuOpen: boolean = false;
@@ -33,6 +37,7 @@ export class PublicNavbarComponent {
   set isMenuOpen(value: boolean) {
     this._isMenuOpen = value;
     this.isMenuOpenChange$.next(value);
+    this.updateLinksTop();
   }
 
   readonly languages: LangData[] = [
@@ -77,6 +82,16 @@ export class PublicNavbarComponent {
     });
   }
 
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any) {
+    this.isMenuOpen = false;
+    this.updateLinksTop();
+  }
+
+  ngAfterViewInit(): void {
+    this.updateLinksTop();
+  }
+
   triggerMenu() {
     this.isMenuOpen = !this.isMenuOpen;
   }
@@ -85,6 +100,15 @@ export class PublicNavbarComponent {
     if (!(this.localeId)) return;
 
     this.currentLanguage = this.getCurrentLanguage();
+  }
+
+  private updateLinksTop(): void {
+    if (!(this.navbar)) return;
+    if (!(this.navbarLinks)) return;
+
+    const paddingBttom = window.getComputedStyle(this.navbar.nativeElement, null).getPropertyValue('padding-bottom')
+    const height = this.navbar.nativeElement.offsetHeight - parseInt(paddingBttom);
+    this.navbarLinks.nativeElement.style.top = `${height}px`;
   }
 
   private getCurrentLanguage(): LangData {
