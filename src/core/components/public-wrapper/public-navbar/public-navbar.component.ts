@@ -51,7 +51,7 @@ export class PublicNavbarComponent {
   ngOnInit() { }
 
   changePath(code: LangData['code']) {
-    location.replace(`/${code}/`);
+    location.replace(`/${code}/#${this.router.url}`);
   }
 
   currentLanguage: LangData = this.languages[0];
