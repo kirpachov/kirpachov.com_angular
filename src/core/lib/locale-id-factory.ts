@@ -7,11 +7,6 @@ import localeEn from "@angular/common/locales/en";
 
 export const validLocaleIds: string[] = ['en-US', 'it-IT'];
 
-var locales: Record<string, any> = {
-  'it': localeIt,
-  'en': localeEn,
-};
-
 export const localeIdFactory = (configsService: ConfigsService): typeof validLocaleIds[number] => {
   // const browserLocale = navigator.language;
   // const localStorageLocale = localStorage.getItem('locale');
@@ -34,7 +29,11 @@ export const localeIdFactory = (configsService: ConfigsService): typeof validLoc
   return locale;
 };
 
+const locales: Record<string, any> = {
+  'it': localeIt,
+  'en': localeEn,
+};
+
 const validLocale = (locale: string) => validLocaleIds.includes(locale);
 const shortLocaleid = (locale: string) => locale.split('-')[0];
 const debug = (...messsages: any[]) => console.log('[get-locale-id.ts]', ...messsages);
-const debugMode: boolean = false;

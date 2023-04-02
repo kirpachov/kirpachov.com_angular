@@ -11,11 +11,12 @@ import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.com
 import { PublicWrapperModule } from "src/core/components/public-wrapper/public-wrapper.module";
 import { ThemesModule } from "src/core/components/themes/themes.module";
 import { UnderlinedButtonModule } from "src/core/components/underlined-button/underlined-button.module";
-import { HttpClientModule } from "@angular/common/http";
+import { HTTP_INTERCEPTORS, HttpClientModule } from "@angular/common/http";
 import { ConfigsService } from "src/core/services/configs.service";
 import { initialLoadConfigs } from "src/core/lib/initial-load-configs";
 import { BorderedButtonModule } from "@core/components/bordered-button/bordered-button.module";
 import { localeIdFactory } from "@core/lib/locale-id-factory";
+import { LanguageInterceptor } from "@core/interceptors/language.interceptor";
 
 
 @NgModule({
@@ -44,6 +45,7 @@ import { localeIdFactory } from "@core/lib/locale-id-factory";
     })
   ],
   providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: LanguageInterceptor, multi: true },
     { provide: TUI_SANITIZER, useClass: NgDompurifySanitizer },
     { provide: APP_INITIALIZER, useFactory: initialLoadConfigs, deps: [ConfigsService], multi: true },
     {

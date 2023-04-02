@@ -24,9 +24,15 @@
     </a>
   </div>
 
-  <button class="d-flex d-md-none" (hoveringChange)="menuIcon.active = $event" (click)="triggerMenu()" bordered>
-    <app-menu-icon [isOpen]="isMenuOpen" #menuIcon></app-menu-icon>
-  </button>
+  <div class="d-flex d-md-none align-items-center">
+    <button (hoveringChange)="menuIcon.active = $event" (click)="triggerMenu()" bordered>
+      <app-menu-icon [isOpen]="isMenuOpen" #menuIcon></app-menu-icon>
+    </button>
+  
+    <div class="ms-3" >
+      <ng-container *ngTemplateOutlet="langSelectTemp"></ng-container>
+    </div>
+  </div>
 
   <div class="navbar-links | d-none d-md-flex flex-row align-items-center">
     <a class="simple-link colored-transition" underlined routerLink="/about" i18n="@@PublicNavbar:Link:About">About</a>
@@ -46,6 +52,6 @@
     <a class="simple-link colored-transition" underlined routerLink="/projects" i18n="@@PublicNavbar:MobileLink:Projects">Projects</a>
     <a class="simple-link text-nowrap" bordered routerLink="/contacts" i18n="@@PublicNavbar:MobileLink:ContactMe">Contact me</a>
 
-    <ng-container *ngTemplateOutlet="langSelectTemp"></ng-container>
+    <!-- <ng-container *ngTemplateOutlet="langSelectTemp"></ng-container> -->
   </div>
 </div>
