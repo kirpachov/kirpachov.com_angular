@@ -1,7 +1,5 @@
 import { Component, HostBinding, HostListener, Input, SimpleChanges } from '@angular/core';
 
-const log = (...args: any[]) => console.log('app-menu-icon', ...args);
-
 @Component({
   selector: 'app-menu-icon',
   templateUrl: './menu-icon.component.html',

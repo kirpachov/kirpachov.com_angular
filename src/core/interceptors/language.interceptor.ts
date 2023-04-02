@@ -6,21 +6,25 @@ import {
   HttpInterceptor
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { ConfigsService } from '@core/services/configs.service';
 
 @Injectable()
 export class LanguageInterceptor implements HttpInterceptor {
 
   constructor(
-    @Inject(LOCALE_ID)
-    private readonly locale: string
-  ) {}
+    private readonly configs: ConfigsService
+  ) { }
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    request = request.clone({
-      setHeaders: {
-        'Accept-Language': this.locale
-      }
-    });
+    if (this.configs.locale) {
+      request = request.clone({
+        setHeaders: {
+          'Accept-Language': this.configs.locale
+        }
+      });
+    } else {
+      console.warn(`No locale set in configs!`)
+    }
 
     return next.handle(request);
   }

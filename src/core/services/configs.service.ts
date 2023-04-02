@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, catchError, forkJoin, map, of, tap } from 'rxjs';
+import { validLocaleIds } from '@core/lib/locale-id-factory';
+import { BehaviorSubject, Observable, Subject, Subscription, catchError, forkJoin, map, of, takeUntil, tap } from 'rxjs';
 
 const avaliableConfigs = [
   `api.domain`,
@@ -19,17 +20,43 @@ export type ConfigKey = typeof avaliableConfigs[number];
 export class ConfigsService {
   private readonly defaults?: Record<string, any> = {};
 
-  private configs?: Record<string, any>;
+  private _configs?: Record<string, any>;
+  get configs(): Record<string, any> | undefined {
+    return this._configs;
+  }
 
-  configsLoaded: Observable<Record<string, any>> = this.loadConfigs().pipe(
+  set configs(v: Record<string, any> | undefined){
+    this.updateConfigs(v);
+  }
+
+  loadConfigs$: Observable<Record<string, any>> = this.loadConfigs().pipe(
     tap((configs) => {
       this.configs = configs;
+      this.configsLoaded = true;
     })
   );
 
+  _locale?: string = validLocaleIds[0];
+
+  get locale(): string | undefined {
+    return this._locale;
+  }
+
+  set locale(v: string | undefined){
+    this.locale$.next(v);
+  }
+
+  locale$: BehaviorSubject<string|undefined> = new BehaviorSubject<string|undefined>(this.locale);
+
+  destroy$: Subject<void> = new Subject<void>();
+
+  configsLoaded: boolean = false;
+
   constructor(
     private readonly http: HttpClient,
-  ) {}
+  ) {
+    this.locale$.pipe(takeUntil(this.destroy$)).subscribe((locale) => this._locale = locale);
+  }
 
   /**
    * Get a config value.
@@ -38,7 +65,11 @@ export class ConfigsService {
    * @returns An observable that emits the config value.
    */
   get(key: ConfigKey): Observable<any> {
-    return of(this.getSync(key));
+    if (this.configsLoaded) return of(this.getSync(key));
+
+    return this.loadConfigs$.pipe(
+      map(() => this.getSync(key))
+    );
   }
 
   /**
@@ -49,6 +80,11 @@ export class ConfigsService {
    */
   getSync(key: ConfigKey): any {
     return (this.configs || {})[key] || (this.defaults || {})[key];
+  }
+
+  set(key: ConfigKey, value: any): void {
+    this.configs ||= {};
+    this.configs[key] = value;
   }
 
   getMultiple(keys: ConfigKey[]): Observable<Record<string, any>> {
@@ -63,11 +99,18 @@ export class ConfigsService {
     );
   }
 
+  private updateConfigs(configs: Record<string, any> | undefined): void {
+    this._configs = configs;
+    if (!(configs)) return;
+
+    this.locale = configs['locale'] ?? this.locale;
+  }
+
   private loadConfigs(): Observable<Record<string, any>> {
     const load = (filename: string) => this.http.get(`assets/config/${filename}`);
 
     return new Observable<Record<string, any>>((obs) => {
-      let final = {};
+      let final: Record<string, any> = {};
       let loaded: number = 0;
       const complete = () => {
         obs.next(final);
@@ -78,17 +121,14 @@ export class ConfigsService {
         if (++loaded === 2) complete();
       }
 
-      load('config.example.json').subscribe((example) => {
-        final = { ...final, ...example };
-        done();
-      });
-
-      load('config.json').subscribe((configs) => {
+      const mergeAndDone = (configs: Record<string, any>) => {
         final = { ...final, ...configs };
         done();
-      }, () => {
-        done();
-      });
+      }
+
+      load('config.example.json').subscribe(example => mergeAndDone(example));
+
+      load('config.json').subscribe(configs => mergeAndDone(configs), done);
     }).pipe(
       tap((configs) => {
         this.configs = configs;

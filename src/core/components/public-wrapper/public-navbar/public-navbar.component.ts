@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { AutoDestroy } from '@core/lib/autodestroy';
 import { Subject, takeUntil } from 'rxjs';
 import {TuiCountryIsoCode} from '@taiga-ui/i18n';
+import { ConfigsService } from '@core/services/configs.service';
 
 export interface LangData {
   name: string;
@@ -55,17 +56,24 @@ export class PublicNavbarComponent {
 
   currentLanguage: LangData = this.languages[0];
 
+  private localeId?: string;
+
   constructor(
     private readonly router: Router,
-    @Inject(LOCALE_ID) private localeId: string
+    private readonly configs: ConfigsService,
   ) {
     this.isMenuOpenChange$.pipe(takeUntil(this.destroy$)).subscribe((value) => {
       this.updateBodyClass();
     });
 
+    configs.locale$.pipe(takeUntil(this.destroy$)).subscribe((locale) => {
+      this.localeId = locale;
+      this.updateCurrentLanguage();
+    });
+
     this.router.events.pipe(takeUntil(this.destroy$)).subscribe(() => {
       this.isMenuOpen = false;
-      this.currentLanguage = this.getCurrentLanguage();
+      this.updateCurrentLanguage();
     });
   }
 
@@ -73,9 +81,16 @@ export class PublicNavbarComponent {
     this.isMenuOpen = !this.isMenuOpen;
   }
 
+  private updateCurrentLanguage(): void {
+    if (!(this.localeId)) return;
+
+    this.currentLanguage = this.getCurrentLanguage();
+  }
+
   private getCurrentLanguage(): LangData {
-    const code = this.localeId.split('-')[0] as string;
-    // const code: "it" | "en" | "" = location.pathname.replace(/\/+/g, '') as any;
+    if (!(this.localeId)) return this.languages[0];
+
+    const code: string | undefined = this.localeId.split('-')[0];
     return this.languages.find(lang => lang.code === code) || this.languages[0];
   }
 

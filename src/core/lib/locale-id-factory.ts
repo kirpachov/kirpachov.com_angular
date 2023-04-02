@@ -14,6 +14,8 @@ export const localeIdFactory = (configsService: ConfigsService): typeof validLoc
   const defaultLocale = validLocaleIds[0];
   const locale = [settingsLocale, defaultLocale].filter(validLocale)[0];
 
+  configsService.locale = locale;
+
   registerLocaleData(locales[shortLocaleid(locale)]);
 
   if (isDevMode()) {
