@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { validLocaleIds } from '@core/lib/locale-id-factory';
-import { BehaviorSubject, Observable, Subject, Subscription, catchError, forkJoin, map, of, takeUntil, tap } from 'rxjs';
+import { BehaviorSubject, Observable, Subject, Subscription, catchError, delay, forkJoin, map, of, takeUntil, tap } from 'rxjs';
 
 const avaliableConfigs = [
   `api.domain`,
@@ -53,6 +53,7 @@ export class ConfigsService {
   configsLoaded: boolean = false;
 
   constructor(
+    @Inject(HttpClient)
     private readonly http: HttpClient,
   ) {
     this.locale$.pipe(takeUntil(this.destroy$)).subscribe((locale) => this._locale = locale);
@@ -110,10 +111,14 @@ export class ConfigsService {
     const load = (filename: string) => this.http.get(`assets/config/${filename}`);
 
     return new Observable<Record<string, any>>((obs) => {
-      let final: Record<string, any> = {};
+      let exampleConfigs: Record<string, any> = {};
+      let actualConfigs: Record<string, any> = {};
       let loaded: number = 0;
       const complete = () => {
-        obs.next(final);
+        obs.next({
+          ...exampleConfigs,
+          ...actualConfigs
+        });
         obs.complete();
       };
 
@@ -121,14 +126,16 @@ export class ConfigsService {
         if (++loaded === 2) complete();
       }
 
-      const mergeAndDone = (configs: Record<string, any>) => {
-        final = { ...final, ...configs };
+      load('config.example.json').subscribe(example => {
+        exampleConfigs = example;
         done();
-      }
+      });
 
-      load('config.example.json').subscribe(example => mergeAndDone(example));
+      load('config.json').subscribe(configs => {
+        actualConfigs = configs;
+        done();
+      }, done);
 
-      load('config.json').subscribe(configs => mergeAndDone(configs), done);
     }).pipe(
       tap((configs) => {
         this.configs = configs;

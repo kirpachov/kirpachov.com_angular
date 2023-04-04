@@ -1,4 +1,4 @@
-import { EnvironmentInjector, Injectable } from '@angular/core';
+import { EnvironmentInjector, Inject, Injectable } from '@angular/core';
 import { ConfigsService } from './configs.service';
 import { forkJoin } from 'rxjs';
 // import { Config } from '@core/lib/config';
@@ -9,7 +9,7 @@ import { forkJoin } from 'rxjs';
 })
 export class DomainService {
   protected readonly version: number = 1;
-  protected get versionNamespace(): string{
+  protected get versionNamespace(): string {
     return `/v${this.version}/`;
   }
 
@@ -22,9 +22,11 @@ export class DomainService {
   // E.g. `opinioni.net`
   domain?: string;
 
+  // Wheather enable or not http(s)
   secure?: boolean;
 
   constructor(
+    @Inject(ConfigsService)
     protected configService: ConfigsService
   ) {
     this.loadConfigs();
